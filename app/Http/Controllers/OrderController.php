@@ -88,7 +88,7 @@ class OrderController extends Controller
             foreach(AdminEmail::all() as $email){
 
                 $data = ["body" => "Orden ".$order->id." asignada a ".$delivery->name, "link" => ""];
-                $this->sendEmail($email, $data, "Notificación de orden asignada");
+                $this->sendEmail($email->email, $data, "Notificación de orden asignada");
 
             }
 
