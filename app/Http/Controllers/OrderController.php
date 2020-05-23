@@ -18,6 +18,7 @@ use App\Diagnostic;
 use App\Payment;
 use App\Car;
 use App\User;
+use App\AdminEmail;
 
 class OrderController extends Controller
 {
@@ -84,7 +85,7 @@ class OrderController extends Controller
             $data = ["body" => "Orden ".$order->id." asignada", "link" => ""];
             $this->sendEmail($delivery->email, $data, "Orden asignada");
 
-            foreach(App\AdminEmail::all() as $email){
+            foreach(AdminEmail::all() as $email){
 
                 $data = ["body" => "Orden ".$order->id." asignada a ".$delivery->name, "link" => ""];
                 $this->sendEmail($email, $data, "Notificación de orden asignada");
