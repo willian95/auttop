@@ -1,0 +1,124 @@
+@extends('layouts.user')
+
+@section('content')
+
+    @include('partials.admin.navbar')
+    <div class="container form" id="contact-section">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center">Vehiculos</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Patente</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Año</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(car, index) in cars">
+                            <th>@{{ index + 1 }}</th>
+                            <td>@{{ car.patent }}</td>
+                            <td>@{{ car.brand }}</td>
+                            <td>@{{ car.model }}</td>
+                            <td>@{{ car.year }}</td>
+                            <td>@{{ car.color }}</td>
+                            <td>
+                                <a class="btn btn-success" :href="'{{ url('/admin/car/edit/') }}'+'/'+car.id">editar</a>
+                                <button class="btn btn-danger" @click="erase(car.id)">eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" v-for="index in pages" :key="index" @click="fetch(index)" >@{{ index }}</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+@endsection
+
+@push('scripts')
+
+    <script>
+                    
+        const app = new Vue({
+            el: '#dev-app',
+            data(){
+                return{
+                    cars:[],
+                    pages:0
+                }
+            },
+            methods:{
+
+                fetch(page = 1){
+
+                    axios.get("{{ url('/admin/car/fetch/') }}"+"/"+page)
+                    .then(res => {
+
+                        this.cars = res.data.cars
+                        this.pages = Math.ceil(res.data.carsCount / 15)
+
+                    })
+                    .catch(err => {
+                        $.each(err.response.data.errors, function(key, value){
+                            alert(value)
+                        });
+                    })
+
+                },
+                erase(id){
+
+                    if(confirm("¿Está seguro?")){
+
+                        axios.post("{{ url('/admin/car/delete/') }}", {id: id}).then(res => {
+
+                            if(res.data.success == true){
+                                alert(res.data.msg)
+                                this.fetch()
+                            }else{
+
+                                alert(res.data.msg)
+
+                            }
+
+                        })
+                        .catch(err => {
+                            $.each(err.response.data.errors, function(key, value){
+                                alert(value)
+                            });
+                        })
+
+                    }
+
+                }
+                
+
+            },
+            mounted(){
+                this.fetch()
+            }
+
+        })
+
+    </script>
+
+@endpush

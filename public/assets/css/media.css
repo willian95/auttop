@@ -1,0 +1,78 @@
+@media screen and (min-width: 0px) and (max-width: 767px) {
+
+.title-banner {
+    text-transform: uppercase;
+    font-size: 35px;
+}
+
+.btn-direction {
+    font-size: 15px;
+    }
+.logos img {
+    width: 50%;
+}
+
+.main-footer__copy {
+
+    font-size: 14px;
+    }
+
+    .logo img {
+    width: 40%;
+}
+
+.logo-form img{
+	width: auto!important;
+}
+
+h2{    font-size: 18px;}
+
+.responsive-menu-btn svg {
+    position: absolute;
+    top: 20%;
+}
+
+.info-serv{
+	height: auto;
+}
+
+.title-serv{
+	width: auto;
+}
+
+#accordion {
+       width: 100%;
+    padding: 20px;
+}
+#headingOne{
+	    height: 10vh;
+
+}
+
+.nav__menu{
+	    justify-content: center;
+    height: 100vh;
+}
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+	#accordion {
+    width: 90%;
+}
+
+.title-serv {
+    display: flex;
+    justify-content: space-between;
+    /* margin-bottom: 10%; */
+    align-items: baseline;
+    width: 90%;
+    }
+}
+
+
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+
+
+}
