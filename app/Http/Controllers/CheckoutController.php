@@ -27,7 +27,7 @@ class CheckoutController extends Controller
                 $total = $total + floatval($approved->diagnostic->price);
             }
 
-            if(Cart::where('order_id', $request->orderId) <= 0){
+            if(Cart::where('order_id', $request->orderId)->count() <= 0){
 				$cart = new Cart;
 				$cart->order_id = $request->orderId;
 				$cart->total = $total;
