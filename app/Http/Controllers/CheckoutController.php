@@ -87,6 +87,7 @@ class CheckoutController extends Controller
 		$payment = new Payment;
 		$payment->order_id = $cart->order_id;
 		$payment->transfer_id = session('tranfer');
+
 		if($response->detailOutput->responseCode == 0){
 			
 			$payment->status = "aprobado";
@@ -106,6 +107,7 @@ class CheckoutController extends Controller
 				$this->sendEmail($email->email, $data, "Proceso de lavado");
 
 			}
+			$payment->save();
 
 			return view('user.payments.success', ["order" => $order]);
 
@@ -121,11 +123,10 @@ class CheckoutController extends Controller
 				$this->sendEmail($email->email, $data, "Proceso rechazado");
 
 			}
-
+			$payment->save();
 
 			return view('user.payments.reject', ["order" => $order]);
 		}
-		$payment->save();
 
 		
 
