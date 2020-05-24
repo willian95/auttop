@@ -32,8 +32,6 @@
                                 <a :href="'{{ url('/order/number') }}'+'/'+order.client_link" v-if="order.status_id >= 2">ver</a>
                             </td>
                             <td>
-                                <a v-if="order.status.id == 1" class="btn btn-success text-white" :href="'{{ url('/') }}'+'/mechanic/order/edit/'+order.id">Revisión de orden</a>
-                                <button v-if="order.status.id == 2" class="btn btn-success text-white" @click="notificationCarProcess(order.id)">Auto en proceso</button>
                                 <a v-if="order.status.id == 3" :href="'{{ url('/') }}'+'/mechanic/diagnostic/check/'+order.id" class="btn btn-success text-white">Chequear</a>
                                 
                             </td>

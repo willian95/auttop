@@ -40,14 +40,20 @@
                                 <a :href="'{{ url('/order/number') }}'+'/'+order.client_link" v-if="order.status_id >= 2">ver</a>
                             </td>
                             <td>
-                            
+                                @if(\Auth::user()->role_id == 3)
                                 <a v-if="order.status.id == 1" class="btn btn-success text-white" @click="notificationCarOnTheWay(order.id)">Notificar camino al taller</a>
                                 <a v-if="order.status.id == 2" class="btn btn-success text-white" @click="notificationCarProcess(order.id)">Notificar auto en proceso</a>
+                                @endif
+                                @if(\Auth::user()->role_id == 2)
+                                <a v-if="order.status.id == 3" :href="'{{ url('/') }}'+'/mechanic/diagnostic/check/'+order.id" class="btn btn-success text-white">Chequear</a>
+                                @endif
+                                @if(\Auth::user()->role_id == 1)
                                 <a v-if="order.status.id == 4" class="btn btn-success text-white" :href="'{{ url('/admin/order/diagnostic/') }}'+'/'+order.id">Diagnostico</a>
-                                <a v-if="order.status.id == 9" class="btn btn-success text-white" :href="'{{ url('/admin/order/show/payments/') }}'+'/'+order.id">Ver pagos</a>
-                                <a v-if="order.status.id == 10" class="btn btn-success text-white" @click="notificationCarOnDelivery(order.id)">Auto Camino a tu lugar</a>
-                                <p v-if="order.status.id == 11">Orden finalizada</p>
-                                <p v-if="order.status.id == 12">Orden cancelada</p>
+                                @endif
+                                @if(\Auth::user()->role_id == 1 || \Auth::user()->role_id == 2)
+                                <a v-if="order.status.id == 7" class="btn btn-success text-white" @click="notificationCarOnDelivery(order.id)">Auto Camino a tu lugar</a>
+                                <a v-if="order.status.id == 8" class="btn btn-success text-white" @click="notificationCarOnDelivery(order.id)">Vehiculo entregado</a>
+                                @endif
                                 <!--<button class="btn btn-danger" v-if="order.status != 3 && order.status.id < 11" @click="cancel(order.id)">cancelar</button>-->
                             </td>
                         </tr>

@@ -248,11 +248,24 @@
                     }else{
 
                         let service = this.services[this.serviceIndex]
+                        var exists = false
 
-                        this.orderServices.push({"service":service, "price": this.price})
-                        this.serviceIndex = ""
-                        this.price = ""
-                        this.serviceCount++;
+                        this.orderServices.forEach((data, index)=>{
+                            
+                            if(data.service.id == service.id){
+                                exists = true
+                            }
+                        })
+
+                        if(!exists){
+                            this.orderServices.push({"service":service, "price": this.price})
+                            this.serviceIndex = ""
+                            this.price = ""
+                            this.serviceCount++;
+                        }else{
+                            alert("Este servicio ya está agregado")
+                        }
+                        
                     }
                 },
                 removeService(id){

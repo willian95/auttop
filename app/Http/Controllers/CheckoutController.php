@@ -14,9 +14,13 @@ use Freshwork\Transbank\RedirectorHelper;
 
 use App\Traits\StoreOrderHistory;
 
+use App\Traits\SendEmail;
+use App\AdminEmail;
+
 class CheckoutController extends Controller
 {
 	use StoreOrderHistory;
+	use SendEmail;
 
     function cart(Request $request){
 
@@ -87,15 +91,38 @@ class CheckoutController extends Controller
 			
 			$payment->status = "aprobado";
 
-			$order = Order::find($cart->order_id);
+			$order = Order::with('client')->find($cart->order_id);
 			$order->status_id = 7;
 			$order->update();
 
 			$this->storeHistory($order->id, $order->status_id);
+
+			$data = ["body" => "Su orden ha sido pagada exitosamente, su auto ha ingresado al proceso de lavado", "link" => $order->link];
+			$this->sendEmail($order->client->email, $data, "Orden pagada exitosamente");
+
+			foreach(AdminEmail::all() as $email){
+
+				$data = ["body" => "Orden ".$order->id." pagada exitosamente, puede ingresar al proceso de lavado", "link" => $order->link];
+				$this->sendEmail($email->email, $data, "Proceso de lavado");
+
+			}
+
 			return view('user.payments.success', ["order" => $order]);
 
 		}else{
 			$payment->status = "rechazado";
+
+			$data = ["body" => "Ha ocurrido un error con su pago", "link" => $order->link];
+			$this->sendEmail($order->client->email, $data, "Pago rechazado");
+
+			foreach(AdminEmail::all() as $email){
+
+				$data = ["body" => "Orden ".$order->id." ha sido rechazado el pago", "link" => $order->link];
+				$this->sendEmail($email->email, $data, "Proceso rechazado");
+
+			}
+
+
 			return view('user.payments.reject', ["order" => $order]);
 		}
 		$payment->save();

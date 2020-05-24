@@ -107,8 +107,22 @@ class OrderController extends Controller
 
             $skip = ($page - 1) * 15;
 
-            $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '<', 12)->skip($skip)->take(15)->orderBy('id', 'desc')->get();
-            $ordersCount = Order::count();
+            $order = Order::with('status', 'car', 'user', 'client', 'payments')->query();
+            
+            if(\Auth::user()->role_id == 2){
+                $orders = $order->where('status_id', '>', 3)->where('status_id', '<', 9)->get();
+                $ordersCount = $order->where('status_id', '>', 3)->where('status_id', '<', 9)->count();
+            }
+
+            else if(\Auth::user()->role_id == 3){
+                $orders = $order->where('status_id', '>=', 1)->where('status_id', '<', 3)->get();
+                $ordersCount = $order->where('status_id', '>=', 1)->where('status_id', '<', 3)->count();
+            }
+
+            else{
+                $orders = $order->skip($skip)->take(15)->orderBy('id', 'desc')->get();
+                $ordersCount = $order->where('status_id', '<', 9)->count();
+            }
 
             return response()->json(["success" => true, "orders" => $orders, "ordersCount" => $ordersCount]);
 

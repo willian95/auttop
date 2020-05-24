@@ -17,6 +17,7 @@
     <div class="nav-item">
       
         <a href="{{ route('admin.dashboard.index') }}" style="margin-right: 10px;">Inicio</a>
+        @if(Auth::check() && Auth::user()->role_id == 1)
         <a href="{{ route('admin.category.index') }}" style="margin-right: 10px;">Categorías</a>
         <a href="{{ route('admin.email.index') }}" style="margin-right: 10px;">Email</a>
         <a href="{{ route('admin.service.index') }}" style="margin-right: 10px;">Servicios</a>
@@ -24,6 +25,7 @@
         <a href="{{ route('admin.delivery.index') }}" style="margin-right: 10px;">Deliveries</a>
         <a href="{{ route('admin.client.index') }}" style="margin-right: 10px;">Clientes</a>
         <a href="{{ route('admin.car.index') }}" style="margin-right: 10px;">Vehiculos</a>
+        @endif
         <a href="{{ route('admin.order.index') }}">ODT</a>
 
     </div>
