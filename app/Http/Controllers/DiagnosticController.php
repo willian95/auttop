@@ -9,11 +9,13 @@ use App\Order;
 use App\ApprovedDiagnostic;
 use App\Traits\StoreOrderHistory;
 use App\Traits\StoreWhatsappMessage;
+use App\AdminEmail;
 
 class DiagnosticController extends Controller
 {
     use StoreOrderHistory;
     use StoreWhatsappMessage;
+    use SendEmail;
     
     function check($id){
         return view('mechanic.orders.checkCar', ["orderId" => $id ]);
@@ -55,6 +57,13 @@ class DiagnosticController extends Controller
                 $order->update();
 
                 $this->storeHistory($order->id, $order->status_id);
+
+                foreach(AdminEmail::all() as $email){
+
+                    $data = ["body" => "Orden ".$order->id." diagnosticada a ".$delivery->name, "link" => $order->link];
+                    $this->sendEmail($email->email, $data, "Notificación de orden asignada");
+
+                }
 
                 return response()->json(["success" => true, "msg" => "Diagnostico agregado"]);
 
