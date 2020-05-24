@@ -32,6 +32,8 @@ class CheckoutController extends Controller
 				$cart->order_id = $request->orderId;
 				$cart->total = $total;
 				$cart->save();
+			}else{
+				$cart = Cart::where("order_id", $request->orderId)->first();
 			}
 
             return response()->json(["success" => true, "cartId" => $cart->id]);
