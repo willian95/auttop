@@ -118,7 +118,7 @@ class OrderController extends Controller
             }
 
             else{
-                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->skip($skip)->take(15)->orderBy('id', 'desc')->get();
+                $orders = Order::with('status', 'car', 'user', 'client', 'payments')>where('status_id', '<', 9)->skip($skip)->take(15)->orderBy('id', 'desc')->get();
                 $ordersCount = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '<', 9)->count();
             }
 
