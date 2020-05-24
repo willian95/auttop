@@ -28,7 +28,7 @@ Route::post("/order/diagnostics/approved", "DiagnosticController@approveDiagnost
 
 Route::post("/cart/store", "CheckoutController@cart");
 
-Route::get("/checkout/{cartId}", "checkoutController@initTransaction");
+Route::get("/checkout/{cartId}", "CheckoutController@initTransaction");
 Route::post('/checkout/webpay/response', 'CheckoutController@response')->name('checkout.webpay.response');  
 Route::post('/checkout/webpay/finish', 'CheckoutController@finish')->name('checkout.webpay.finish');
 
