@@ -52,7 +52,7 @@
                                 @endif
                                 @if(\Auth::user()->role_id == 1 || \Auth::user()->role_id == 2)
                                 <a v-if="order.status.id == 7" class="btn btn-success text-white" @click="notificationCarOnDelivery(order.id)">Auto Camino a tu lugar</a>
-                                <a v-if="order.status.id == 8" class="btn btn-success text-white" @click="notificationCarOnDelivery(order.id)">Vehiculo entregado</a>
+                                <a v-if="order.status.id == 8" class="btn btn-success text-white" @click="notificationCarFinished(order.id)">Vehiculo entregado</a>
                                 @endif
                                 <!--<button class="btn btn-danger" v-if="order.status != 3 && order.status.id < 11" @click="cancel(order.id)">cancelar</button>-->
                             </td>
@@ -109,6 +109,24 @@
                 },
                 notificationCarOnDelivery(id){
                     axios.post("{{ url('/admin/order/notificationCarOnDelivery') }}", {id: id})
+                    .then(res => {
+
+                        if(res.data.success == true){
+                            alert(res.data.msg)
+                            this.fetch()
+                        }else{
+                            alert(res.data.msg)
+                        }
+
+                    })
+                    .catch(err => {
+                        $.each(err.response.data.errors, function(key, value){
+                            alert(value)
+                        });
+                    })
+                },
+                notificationCarFinished(id){
+                    axios.post("{{ url('/admin/order/notificationFinish') }}", {id: id})
                     .then(res => {
 
                         if(res.data.success == true){

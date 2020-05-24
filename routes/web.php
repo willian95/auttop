@@ -50,6 +50,7 @@ Route::post("/admin/order/cancel", "OrderController@cancel")->name('admin.order.
 Route::get("/admin/order/fetch/{page}", "OrderController@fetch")->name('admin.order.fetch');
 
 Route::post("/admin/order/notificationCarOnDelivery", "OrderController@notificationCarOnDelivery")->name('admin.order.notificationCarOnDelivery');
+Route::post("/admin/order/notificationFinish", "OrderController@notificationFinish")->name('admin.order.notificationFinish');
 
 Route::get('/admin/order/diagnostic/{id}', "DiagnosticController@diagnostic");
 Route::post('/admin/order/getAdminDiagnostic', "OrderController@getAdminDiagnostics")->name('admin.order.diagnostic.get');

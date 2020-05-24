@@ -230,13 +230,34 @@ class OrderController extends Controller
         try{
 
             $order = Order::find($request->id);
-            $order->status_id = 11;
+            $order->status_id = 8;
             $order->update();
 
             $this->storeHistory($order->id, $order->status_id);
-            $this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", tu auto va camino a tu lugar. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
+            //$this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", tu auto va camino a tu lugar. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
 
-            return response()->json(["success" => true, "msg" => "Orden actualizada, notificación será enviada en breve"]);
+            return response()->json(["success" => true, "msg" => "Orden actualizada"]);
+
+        }catch(\Exception $e){
+
+            return response()->json(["success" => false, "msg" => "Error en el servidor"]);
+
+        }
+
+    }
+
+    function notificationFinish(Request $request){
+
+        try{
+
+            $order = Order::find($request->id);
+            $order->status_id = 9;
+            $order->update();
+
+            $this->storeHistory($order->id, $order->status_id);
+            //$this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", tu auto va camino a tu lugar. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
+
+            return response()->json(["success" => true, "msg" => "Orden actualizada"]);
 
         }catch(\Exception $e){
 
