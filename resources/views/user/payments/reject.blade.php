@@ -5,7 +5,7 @@
     <div class="main-wrapper">
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative" style="background-color:#c8d1df;">
             <div class="auth-box row no-gutters">
-                <div class="col-lg-6 col-md-5 modal-bg-img" style="background-image: url('assets/img/car2.jpg');"></div>
+                <div class="col-lg-6 col-md-5 modal-bg-img" style="background-image: url({{ url('/'.'assets/img/car2.jpg') }});"></div>
                 <div class="col-lg-6 col-md-7 bg-white">
                     <div class="p-3">
                         <div class="text-center">
