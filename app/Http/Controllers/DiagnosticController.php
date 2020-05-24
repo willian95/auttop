@@ -9,6 +9,7 @@ use App\Order;
 use App\ApprovedDiagnostic;
 use App\Traits\StoreOrderHistory;
 use App\Traits\StoreWhatsappMessage;
+use App\Traits\SendEmail;
 use App\AdminEmail;
 
 class DiagnosticController extends Controller
