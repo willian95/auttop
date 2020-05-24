@@ -86,7 +86,7 @@ class CheckoutController extends Controller
 
 		$payment = new Payment;
 		$payment->order_id = $cart->order_id;
-		$payment->transfer_id = session('tranfer');
+		$payment->transfer_id = session('transfer');
 
 		if($response->detailOutput->responseCode == 0){
 			
