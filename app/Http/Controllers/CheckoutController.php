@@ -27,10 +27,12 @@ class CheckoutController extends Controller
                 $total = $total + floatval($approved->diagnostic->price);
             }
 
-            $cart = new Cart;
-            $cart->order_id = $request->orderId;
-            $cart->total = $total;
-            $cart->save();
+            if(Cart::where('order_id', $request->orderId) <= 0){
+				$cart = new Cart;
+				$cart->order_id = $request->orderId;
+				$cart->total = $total;
+				$cart->save();
+			}
 
             return response()->json(["success" => true, "cartId" => $cart->id]);
 
