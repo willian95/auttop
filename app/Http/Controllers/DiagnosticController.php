@@ -61,7 +61,7 @@ class DiagnosticController extends Controller
 
                 foreach(AdminEmail::all() as $email){
 
-                    $data = ["body" => "Orden ".$order->id." diagnosticada a ".$delivery->name, "link" => $order->link];
+                    $data = ["body" => "Orden ".$order->id." diagnosticada", "link" => $order->link];
                     $this->sendEmail($email->email, $data, "Notificación de orden asignada");
 
                 }
