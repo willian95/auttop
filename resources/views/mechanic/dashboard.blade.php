@@ -106,7 +106,43 @@
                             alert(value)
                         });
                     })
-                }          
+                },
+                notificationCarOnDelivery(id){
+                    axios.post("{{ url('/admin/order/notificationCarOnDelivery') }}", {id: id})
+                    .then(res => {
+
+                        if(res.data.success == true){
+                            alert(res.data.msg)
+                            this.fetch()
+                        }else{
+                            alert(res.data.msg)
+                        }
+
+                    })
+                    .catch(err => {
+                        $.each(err.response.data.errors, function(key, value){
+                            alert(value)
+                        });
+                    })
+                },
+                notificationCarFinished(id){
+                    axios.post("{{ url('/admin/order/notificationFinish') }}", {id: id})
+                    .then(res => {
+
+                        if(res.data.success == true){
+                            alert(res.data.msg)
+                            this.fetch()
+                        }else{
+                            alert(res.data.msg)
+                        }
+
+                    })
+                    .catch(err => {
+                        $.each(err.response.data.errors, function(key, value){
+                            alert(value)
+                        });
+                    })
+                }        
 
             },
             mounted(){
