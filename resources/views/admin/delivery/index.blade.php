@@ -28,11 +28,11 @@
                     </thead>
                     <tbody>
                         <tr v-for="(delivery, index) in deliveries">
-                            <th>@{{ index + 1 }}</th>
-                            <td>@{{ delivery.name }}</td>
-                            <td>@{{ delivery.email }}</td>
-                            <td>@{{ delivery.password_reveal }}</td>
-                            <td>
+                            <th v-cloak>@{{ index + 1 }}</th>
+                            <td v-cloak>@{{ delivery.name }}</td>
+                            <td v-cloak>@{{ delivery.email }}</td>
+                            <td v-cloak>@{{ delivery.password_reveal }}</td>
+                            <td v-cloak>
                                 <button class="btn btn-success" data-toggle="modal" data-target="#createDelivery" @click="edit(delivery)">editar</button>
                                 <button class="btn btn-danger" @click="erase(delivery.id)">eliminar</button>
                             </td>
@@ -41,7 +41,7 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row" v-cloak>
             <div class="col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">

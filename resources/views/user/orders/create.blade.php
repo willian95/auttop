@@ -163,9 +163,9 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(service, index) in services">
-                                            <td>@{{ index + 1 }}</td>
-                                            <td>@{{ service.service }}</td>
-                                            <td>
+                                            <td v-cloak>@{{ index + 1 }}</td>
+                                            <td v-cloak>@{{ service.service }}</td>
+                                            <td v-cloak>
                                                 <button class="btn btn-danger" type="button" @click="removeService(service.id)">X</button>
                                             </td>
                                         </tr>

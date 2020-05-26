@@ -25,13 +25,13 @@
                     </thead>
                     <tbody>
                         <tr v-for="(car, index) in cars">
-                            <th>@{{ index + 1 }}</th>
-                            <td>@{{ car.patent }}</td>
-                            <td>@{{ car.brand }}</td>
-                            <td>@{{ car.model }}</td>
-                            <td>@{{ car.year }}</td>
-                            <td>@{{ car.color }}</td>
-                            <td>
+                            <th v-cloak>@{{ index + 1 }}</th>
+                            <td v-cloak>@{{ car.patent }}</td>
+                            <td v-cloak>@{{ car.brand }}</td>
+                            <td v-cloak>@{{ car.model }}</td>
+                            <td v-cloak>@{{ car.year }}</td>
+                            <td v-cloak>@{{ car.color }}</td>
+                            <td v-cloak>
                                 <a class="btn btn-success" :href="'{{ url('/admin/car/edit/') }}'+'/'+car.id">editar</a>
                                 <button class="btn btn-danger" @click="erase(car.id)">eliminar</button>
                             </td>
@@ -40,7 +40,7 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row" v-cloak>
             <div class="col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">

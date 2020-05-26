@@ -35,11 +35,11 @@
                         <tbody>
                             
                             <tr v-for="(payment, index) in payments">
-                                <td>@{{ index + 1 }}</td>
-                                <td>@{{ payment.payment_method }}</td>
-                                <td>@{{ payment.transfer_id }}</td>
-                                <td>@{{ payment.status }}</td>
-                                <td>
+                                <td v-cloak>@{{ index + 1 }}</td>
+                                <td v-cloak>@{{ payment.payment_method }}</td>
+                                <td v-cloak>@{{ payment.transfer_id }}</td>
+                                <td v-cloak>@{{ payment.status }}</td>
+                                <td v-cloak>
                                     <button class="btn btn-success" @click="approve(payment.id)" v-if="payment.status == 'en espera'" >aprobar</button>
                                     <button class="btn btn-danger" data-toggle="modal" data-target="#rejectModal" @click="reject(payment.id)" v-if="payment.status == 'en espera'">rechazar</button>
                                 </td>

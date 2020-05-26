@@ -150,8 +150,8 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(service, index) in services">
-                                            <td>@{{ index + 1 }}</td>
-                                            <td>@{{ service.service.name }}</td>
+                                            <td v-cloak>@{{ index + 1 }}</td>
+                                            <td v-cloak>@{{ service.service.name }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -25,9 +25,9 @@
                         </thead>
                         <tbody>
                             <tr v-for="(service, index) in approvedDiagnostics">
-                                <td>@{{ index + 1 }}</td>
-                                <td>@{{ service.diagnostic.service }}</td>
-                                <td>@{{ service.price }}</td>
+                                <td v-cloak>@{{ index + 1 }}</td>
+                                <td v-cloak>@{{ service.diagnostic.service }}</td>
+                                <td v-cloak>@{{ service.price }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -38,7 +38,7 @@
             
             <div class="Total"> 
                 <div> Suma Total:</div>
-                <div>@{{ total }}</div>
+                <div v-cloak>@{{ total }}</div>
             
             </div>
 

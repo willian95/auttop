@@ -75,8 +75,8 @@
                                          
                                             <tr v-for="(service, index) in services" v-if="service.type == 'aprobada'">
                                             
-                                                <td>@{{ service.service.name }}</td>
-                                                <td>@{{ service.price }}</td>
+                                                <td v-cloak>@{{ service.service.name }}</td>
+                                                <td v-cloak>@{{ service.price }}</td>
                                             </tr>
                                          
                                       </tbody>
@@ -99,11 +99,11 @@
                                       
                                           <tr v-for="(service, index) in services">
                                           
-                                              <td>@{{ service.service.name }}</td>
-                                              <td>@{{ service.price }}</td>
-                                              <td>@{{ service.type }}</td>
-                                              <td>@{{ service.observations }}</td>
-                                              <td>
+                                              <td v-cloak>@{{ service.service.name }}</td>
+                                              <td v-cloak>@{{ service.price }}</td>
+                                              <td v-cloak>@{{ service.type }}</td>
+                                              <td v-cloak>@{{ service.observations }}</td>
+                                              <td v-cloak>
                                                 <input v-if="service.type != 'aprobada'" type="checkbox" id="checkbox" @click="toggleCheck(service.id, service.price)">
                                               </td>
                                           </tr>
@@ -112,7 +112,9 @@
 
                                     </tbody>
                                 </table>
+                                <div v-cloak>
                                 Total: @{{ firstTotal + total }}
+                                </div>
 
 
                                 <p><button class="btn btn-success" @click="approvedServices()">Seleccionar</button></p>

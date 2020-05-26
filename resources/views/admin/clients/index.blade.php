@@ -25,13 +25,13 @@
                     </thead>
                     <tbody>
                         <tr v-for="(client, index) in clients">
-                            <th>@{{ index + 1 }}</th>
-                            <td>@{{ client.name }}</td>
-                            <td>@{{ client.telephone }}</td>
-                            <td>@{{ client.email }}</td>
-                            <td>@{{ client.address }}</td>
-                            <td>@{{ client.location }}</td>
-                            <td>
+                            <th v-cloak>@{{ index + 1 }}</th>
+                            <td v-cloak>@{{ client.name }}</td>
+                            <td v-cloak>@{{ client.telephone }}</td>
+                            <td v-cloak>@{{ client.email }}</td>
+                            <td v-cloak>@{{ client.address }}</td>
+                            <td v-cloak>@{{ client.location }}</td>
+                            <td v-cloak>
                                 <a class="btn btn-success" :href="'{{ url('/admin/client/edit/') }}'+'/'+client.id">editar</a>
                                 <button class="btn btn-danger" @click="erase(client.id)">eliminar</button>
                             </td>
@@ -40,7 +40,7 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row" v-cloak>
             <div class="col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">

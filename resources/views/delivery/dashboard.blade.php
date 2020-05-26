@@ -23,15 +23,15 @@
                     </thead>
                     <tbody>
                         <tr v-for="(order, index) in orders">
-                            <th>@{{ order.id }}</th>
-                            <td>@{{ order.client.name }}</td>
-                            <td>@{{ order.client.telephone }}</td>
-                            <td>@{{ order.client.address }}</td>
-                            <td>@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</td>
-                            <td>
+                            <th v-cloak>@{{ order.id }}</th>
+                            <td v-cloak>@{{ order.client.name }}</td>
+                            <td v-cloak>@{{ order.client.telephone }}</td>
+                            <td v-cloak>@{{ order.client.address }}</td>
+                            <td v-cloak>@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</td>
+                            <td v-cloak>
                                 <a :href="'{{ url('/order/number') }}'+'/'+order.client_link" v-if="order.status_id >= 2">ver</a>
                             </td>
-                            <td>
+                            <td v-cloak>
                                 <a v-if="order.status.id == 1" class="btn btn-success text-white" :href="'{{ url('/') }}'+'/delivery/order/edit/'+order.id">Revisión de orden</a>
                                 <button v-if="order.status.id == 2" class="btn btn-success text-white" @click="notificationCarProcess(order.id)">Auto en proceso</button>
                                 
@@ -42,7 +42,7 @@
 
             </div>
         </div>
-        <div class="row">
+        <div class="row" v-cloak>
             <div class="col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">

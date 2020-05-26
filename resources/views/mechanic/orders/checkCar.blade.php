@@ -14,20 +14,20 @@
                     <table class="table" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th>@{{ category.name }}</th>
-                                <th>OK</th>
-                                <th>Sug</th>
-                                <th>Urg</th>
-                                <th>Observaciones</th>
+                                <th v-cloak>@{{ category.name }}</th>
+                                <th v-cloak>OK</th>
+                                <th v-cloak>Sug</th>
+                                <th v-cloak>Urg</th>
+                                <th v-cloak>Observaciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="service in category.services">
-                                <td>@{{ service.name }}</td>
-                                <td v-for="index in 3">
+                                <td v-cloak>@{{ service.name }}</td>
+                                <td v-for="index in 3" v-cloak>
                                     <input class="service" type="radio" v-bind:name="'service-'+service.id" :value="index">
                                 </td>
-                                <td>
+                                <td v-cloak>
                                     <input v-bind:class="'obser'+service.id" type="text" class="form-control">
                                 </td>
                             </tr>

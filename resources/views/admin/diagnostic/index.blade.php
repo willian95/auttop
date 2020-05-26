@@ -26,14 +26,14 @@
                     </thead>
                     <tbody>
                         <tr v-for="(row,index) in approved">
-                            <td>@{{ row.service.name }}</td>
-                            <td>
+                            <td v-cloak>@{{ row.service.name }}</td>
+                            <td v-cloak>
                                 @{{ row.type }}
                             </td>
-                            <td v-if="row.type == 'aprobada'">
+                            <td v-if="row.type == 'aprobada'" v-cloak>
                                 @{{ row.price }}
                             </td>
-                            <td v-else>
+                            <td v-else v-cloak>
                                 <input type="text" class="form-control price" :id="'price'+row.id" @keypress="isNumber($event)">
                             </td>
                         </tr>

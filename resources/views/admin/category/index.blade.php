@@ -25,10 +25,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(category, index) in categories">
-                            <th>@{{ index + 1 }}</th>
-                            <td>@{{ category.name }}</td>
-                            <td>
+                        <tr v-for="(category, index) in categories" v-cloak>
+                            <th v-cloak>@{{ index + 1 }}</th>
+                            <td v-cloak>@{{ category.name }}</td>
+                            <td v-cloak>
                                 <button class="btn btn-success" data-toggle="modal" data-target="#createCategory" @click="edit(category)">editar</button>
                                 <button class="btn btn-danger" @click="erase(category.id)">eliminar</button>
                             </td>
@@ -37,7 +37,7 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row" v-cloak>
             <div class="col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">

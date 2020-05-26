@@ -29,17 +29,17 @@
                     </thead>
                     <tbody>
                         <tr v-for="(order, index) in orders">
-                            <th>@{{ order.id }}</th>
-                            <td>@{{ order.client.name }}</td>
-                            <td>@{{ order.client.rut }}</td>
-                            <td>@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</td>
-                            <td>@{{ order.car.patent }}</td>
-                            <td>@{{ order.created_at.substring(0, 10) }}</td>
-                            <td>@{{ order.status.text }}</td>
-                            <td>
+                            <th v-cloak>@{{ order.id }}</th>
+                            <td v-cloak>@{{ order.client.name }}</td>
+                            <td v-cloak>@{{ order.client.rut }}</td>
+                            <td v-cloak>@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</td>
+                            <td v-cloak>@{{ order.car.patent }}</td>
+                            <td v-cloak>@{{ order.created_at.substring(0, 10) }}</td>
+                            <td v-cloak>@{{ order.status.text }}</td>
+                            <td v-cloak>
                                 <a :href="'{{ url('/order/number') }}'+'/'+order.client_link" v-if="order.status_id >= 2">ver</a>
                             </td>
-                            <td>
+                            <td v-cloak>
                                 @if(\Auth::user()->role_id == 3)
                                 <a v-if="order.status.id == 1" class="btn btn-success text-white" @click="notificationCarOnTheWay(order.id)">Notificar camino al taller</a>
                                 <a v-if="order.status.id == 2" class="btn btn-success text-white" @click="notificationCarProcess(order.id)">Notificar auto en proceso</a>
@@ -61,7 +61,7 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row" v-cloak>
             <div class="col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">

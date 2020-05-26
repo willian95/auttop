@@ -27,10 +27,10 @@
                 <div class="card-body">
                     <div class="item-reparaciones" v-for="diagnostic in diagnostics" v-if="diagnostic.type == 'aprobada'">
                         
-                        <div> 
+                        <div v-cloak> 
                             @{{ diagnostic.service }}
                         </div>
-                        <div> 
+                        <div v-cloak> 
                             @{{ diagnostic.price }}
                         </div>
                         
@@ -52,10 +52,10 @@
                     
                     <div class="item-reparaciones" v-for="diagnostic in diagnostics" v-if="diagnostic.type == 'urgente'">
                         
-                        <div> 
+                        <div v-cloak> 
                             @{{ diagnostic.service }}
                         </div>
-                        <div> 
+                        <div v-cloak> 
                             @{{ diagnostic.price }}
                         </div>
                         <div>
@@ -79,10 +79,10 @@
                         
                         <div class="item-reparaciones" v-for="diagnostic in diagnostics" v-if="diagnostic.type == 'sugerida'">
                            
-                            <div> 
+                            <div v-cloak> 
                                 @{{ diagnostic.service }}
                             </div>
-                            <div> 
+                            <div v-cloak> 
                                 @{{ diagnostic.price }}
                             </div>
                             <div>

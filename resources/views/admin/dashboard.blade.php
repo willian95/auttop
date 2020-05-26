@@ -50,14 +50,14 @@
                         </thead>
                         <tbody>
                             
-                            <tr v-for="(order, index) in orders">
-                                <th>@{{ index + 1 }}</th>
-                                <td>@{{ order.client.name }}</td>
-                                <td>@{{ order.client.rut }}</td>
-                                <td>@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</td>
-                                <td>@{{ order.car.patent }}</td>
-                                <td>@{{ order.created_at.substring(0, 10) }}</td>
-                                <td>@{{ order.status.text }}</td>
+                            <tr v-for="(order, index) in orders" v-cloak>
+                                <th v-cloak>@{{ index + 1 }}</th>
+                                <td v-cloak>@{{ order.client.name }}</td>
+                                <td v-cloak>@{{ order.client.rut }}</td>
+                                <td v-cloak>@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</td>
+                                <td v-cloak>@{{ order.car.patent }}</td>
+                                <td v-cloak>@{{ order.created_at.substring(0, 10) }}</td>
+                                <td v-cloak>@{{ order.status.text }}</td>
                             
                             </tr>
                             
@@ -144,7 +144,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="">Asignar delivery</label>
-                                <select class="form-control" v-model="delivery">
+                                <select class="form-control" v-model="delivery" v-cloak>
                                     <option :value="delivery.id" v-for="(delivery, index) in deliveries" >
                                         @{{ delivery.name }}
                                     </option>
@@ -160,7 +160,7 @@
 
                         <div class="row">
                             <div class="col-md-5">
-                                <select class="form-control" v-model="serviceIndex">
+                                <select class="form-control" v-model="serviceIndex" v-cloak>
                                     <option :value="index" v-for="(service, index) in services" >
                                         @{{ service.name }}
                                     </option>
@@ -187,10 +187,10 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(service, index) in orderServices">
-                                            <td>@{{ index + 1 }}</td>
-                                            <td>@{{ service.service.name }}</td>
-                                            <td>@{{ service.price }}</td>
-                                            <td>
+                                            <td v-cloak>@{{ index + 1 }}</td>
+                                            <td v-cloak>@{{ service.service.name }}</td>
+                                            <td v-cloak>@{{ service.price }}</td>
+                                            <td v-cloak>
                                                 <button class="btn btn-danger" type="button" @click="removeService(service.service.id)">X</button>
                                             </td>
                                         </tr>

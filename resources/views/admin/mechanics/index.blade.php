@@ -28,11 +28,11 @@
                     </thead>
                     <tbody>
                         <tr v-for="(mechanic, index) in mechanics">
-                            <th>@{{ index + 1 }}</th>
-                            <td>@{{ mechanic.name }}</td>
-                            <td>@{{ mechanic.email }}</td>
-                            <td>@{{ mechanic.password_reveal }}</td>
-                            <td>
+                            <th v-cloak>@{{ index + 1 }}</th>
+                            <td v-cloak>@{{ mechanic.name }}</td>
+                            <td v-cloak>@{{ mechanic.email }}</td>
+                            <td v-cloak>@{{ mechanic.password_reveal }}</td>
+                            <td v-cloak>
                                 <button class="btn btn-success" data-toggle="modal" data-target="#createMechanic" @click="edit(mechanic)">editar</button>
                                 <button class="btn btn-danger" @click="erase(mechanic.id)">eliminar</button>
                             </td>
@@ -41,7 +41,7 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row" v-cloak>
             <div class="col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
