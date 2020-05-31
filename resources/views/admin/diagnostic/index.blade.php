@@ -4,7 +4,7 @@
 
     @include('partials.admin.navbar')
 
-    <div class="container form" id="contact-section">
+    <div class="container form dash" id="contact-section">
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center">

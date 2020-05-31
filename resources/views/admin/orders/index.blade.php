@@ -3,14 +3,17 @@
 @section("content")
 
     @include('partials.admin.navbar')
-    <div class="container form" id="contact-section">
-
-        <div class="row">
+    <div class="container form dash" id="contact-section">
+        <div class="top_title">
+            <input type="text" class="form-control form-control-search " placeholder="RUT" @keyup="search()" v-model="rut">
+        </div>
+      <!---  <div class="row">
             <div class="col-12">
                 <input type="text" class="form-control" placeholder="RUT" @keyup="search()" v-model="rut">
             </div>
-        </div>
+        </div>--->
 
+     <div class="bg__tables mt-15">
         <div class="row" style="margin-top: 10px;">
             <div class="col-12">
                 <table class="table">
@@ -72,6 +75,7 @@
                 </nav>
             </div>
         </div>
+     </div>
     </div>
 
 @endsection

@@ -3,37 +3,46 @@
 @section("content")
 
     @include('partials.admin.navbar')
-    <section  class="form" id="contact-section" >
-        <h3 class="text-center">Dashboard</h3>
+    <section  class="form  dash" id="contact-section" >
+        <div class="top_title">
+            <h3 class="">Panel de control</h3>
+    
+                <button class="btn btn-success mr-5" data-toggle="modal" data-target="#createODT">Crear Orden  <img src="{{ asset('assets/img/iconos/bx-list-plus.svg') }}" alt=""></button>
+           
+        </div>
 
-        <div class="container" style="margin-top:40px;">
-            <div class="row">
+       <div class="container m140" >
+            <!-- <div class="row">
                 <div class="col-12">
                     <p class="text-center">
                         <button class="btn btn-success" data-toggle="modal" data-target="#createODT">Crear</button>
                     </p>
-                </div>  
+                </div>  --->
+            
+          <div class="row resgistros">
+            <div class="col-4">
+                <p class="text-center">{{ App\Car::count() }} <img src="{{ asset('assets/img/iconos/bx-car.svg') }}" alt=""> </p>
+                <h5 class="text-center">Vehiculos registrados</h5>
+            
             </div>
-            <div class="row">
-                <div class="col-4">
-                    <h5 class="text-center">Vehiculos registrados</h5>
-                    <p class="text-center">{{ App\Car::count() }}</p>
-                </div>
-                <div class="col-4">
-                    <h5 class="text-center">Clientes registrados</h5>
-                    <p class="text-center">{{ App\Client::count() }}</p>
-                </div>
-                <div class="col-4">
-                    <h5 class="text-center">Ordenes registradas</h5>
-                    <p class="text-center">{{ App\Order::count() }}</p>
-                </div>
+            <div class="col-4">
+                <p class="text-center">{{ App\Client::count() }} <img src="{{ asset('assets/img/iconos/bx-user.svg') }}" alt=""></p>
+                <h5 class="text-center">Clientes registrados</h5>
+                
             </div>
+            <div class="col-4">
+                <p class="text-center">{{ App\Order::count() }} <img src="{{ asset('assets/img/iconos/bx-edit.svg') }}" alt=""></p>
+                <h5 class="text-center">Ordenes registradas</h5>
+                
+            </div>
+          </div>
+          <div class="bg__tables">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="text-center">Últimas ordenes</h3>
+                    <h3 class="">Últimas ordenes</h3>
                 </div>
             </div>
-            <div class="row">
+            <div class="row over">
                 <div class="col-12">
                     <table class="table">
                         <thead>
@@ -65,11 +74,11 @@
                     </table>
                 </div>
             </div>
-
+          </div>
         </div>
-
+    
     </section>
-
+</div>
     <!-- modal -->
 
     <div class="modal fade" id="createODT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,67 +94,89 @@
 
                     <div class="form-group row">
     
-                        <div class="col-md-4 mb-4">
+                        <div class="col-lg-5  col-md-10 mb-4">
                             <input type="text" class="form-control" placeholder="Rut" v-model="rut">
                         </div>
 
                         <div>
-                            <button class="btn btn-success" @click="getClient()" type="button">buscar</button>
+                            <button class="btn btn-success btn-search" @click="getClient()" type="button"><img class="filter" src="{{ asset('assets/img/iconos/bx-search-alt.svg') }}" alt=""></button>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <input type="text" class="form-control" placeholder="Nombre"  v-model="name">
                         </div>
                     </div>
-
-
                     <div class="form-group row">
-                        <div class="col-md-6 mb-4">
-                            <input type="text" class="form-control" placeholder="Fono"  v-model="telephone" id="telephone" @click="setNumber()" @keyup="checkNumber()" @keypress="isNumber($event)">
-                        </div>
-
-                        <div class="col-md-6">
+                     
+                        <div class="col-lg-12">
                             <input type="text" class="form-control" placeholder="Dirección"  v-model="address">
 
                         </div>
                     </div>
 
-                    <div style="margin-bottom: 50px;">
+
+                    <div class="form-group row">
+                        <div class="col-lg-6 mb-4">
+                            <input type="text" class="form-control" placeholder="Fono"  v-model="telephone" id="telephone" @click="setNumber()" @keyup="checkNumber()" @keypress="isNumber($event)">
+                        </div>
+                        <div class="col-lg-5  col-md-10 ">
+                            <input type="text" class="form-control" placeholder="Patente"  v-model="patent">
+                  
+                        </div>
+                
+                        <div class="">
+                            <button class="btn btn-success btn-search" @click="getCar()" type="button"><img class="filter" src="{{ asset('assets/img/iconos/bx-search-alt.svg') }}" alt=""></button>
+                        </div>
+                    <!---    <div class="col-lg-6">
+                            <input type="text" class="form-control" placeholder="Dirección"  v-model="address">
+
+                        </div>--->
+                    </div>
+
+                     <!---<div style="margin-bottom: 50px;">
                         <div class="form-group row">
                     
-                            <div class="col-md-4">
+                            <div class="col-lg-5">
                                 <input type="text" class="form-control" placeholder="Patente"  v-model="patent">
                       
                             </div>
                     
-                            <div class="col-md-2">
-                                <button class="btn btn-success" @click="getCar()" type="button">buscar</button>
+                            <div class="">
+                                <button class="btn btn-success" @click="getCar()" type="button"><img class="filter" src="{{ asset('assets/img/iconos/bx-search-alt.svg') }}" alt=""></button>
                             </div>
     
-                            <div class="col-md-6 mb-4">
+                            <div class="col-lg-6 mb-4">
                                 <input type="text" class="form-control" placeholder="Marca"  v-model="brand">
                       
                             </div>
                 
-                        </div>
+                        </div>--->
            
     
-                        <div class="form-group row">
-                            <div class="col-md-6 mb-4">
+                    <div class="form-group row">
+                            
+                        <div class="col-lg-6 mb-4">
+                            <input type="text" class="form-control" placeholder="Marca"  v-model="brand">
+                  
+                        </div>
+
+                            <div class="col-lg-6 mb-4">
                                 <input type="number" class="form-control" placeholder="Año"  v-model="year">
                             </div>
     
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Modelo"  v-model="model">
-                            </div>
+                           
                 
-                        </div>
+                    </div>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <label for="">Asignar delivery</label>
+                        
+                            <div class="col-lg-6 mt-33">
+                                <input type="text" class="form-control" placeholder="Modelo"  v-model="model">
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="asignar" for="">Asignar delivery</label>
                                 <select class="form-control" v-model="delivery" v-cloak>
-                                    <option :value="delivery.id" v-for="(delivery, index) in deliveries" >
+                                    <option   :value="delivery.id" v-for="(delivery, index) in deliveries" >
                                         @{{ delivery.name }}
                                     </option>
                                 </select>
@@ -153,23 +184,24 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-12">
+                            <div class="col-lg-12 mt-5">
                                 <h3 class="text-center">Servicios</h3>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-5">
+                        <div class="row mb-5">
+                            <div class="col-lg-5">
+                                <label class="asignar" for="">Seleccionar servicio</label>
                                 <select class="form-control" v-model="serviceIndex" v-cloak>
                                     <option :value="index" v-for="(service, index) in services" >
                                         @{{ service.name }}
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-lg-5  col-md-10 mt-33">
                                 <input type="text" class="form-control" placeholder="Precio"  v-model="price">
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-lg-2 mt-33">
                                 <button class="btn btn-success" type="button" @click="addService()">agregar</button>
                             </div>
                         </div>
@@ -191,7 +223,7 @@
                                             <td v-cloak>@{{ service.service.name }}</td>
                                             <td v-cloak>@{{ service.price }}</td>
                                             <td v-cloak>
-                                                <button class="btn btn-danger" type="button" @click="removeService(service.service.id)">X</button>
+                                                <button class="btn btn-danger" type="button" @click="removeService(service.service.id)"><img class="filter" src="{{ asset('assets/img/iconos/bx-x.svg') }}" alt=""></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -201,13 +233,13 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" @click="store()">Crear</button>
+                    <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>--->
+                    <button type="button" class="btn btn-primary" @click="store()">Crear orden</button>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+  
 
     <!-- modal -->
 

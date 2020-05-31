@@ -23,20 +23,20 @@
                 <img alt="Auttop" class="img-navbar"  src="{{ asset('assets/img/logo-blanco.png') }}">
             </div>
             <h1 class="title-banner">Bienvenidos a Auttop</h1>
-            <div class="btn-principal">
-                <!--<div class=" btn-one ">
-                    <a class="btn-direction" href="{{ route('order.create') }}">Orden de trabajo</a>
-                </div>-->
+            <div class="btn-principal"> 
+                <div class=" btn-one ">
+                    <a class="btn-direction" href="{{ url('/login') }}">Entrar</a>
+                </div>
             </div>
         </div>
 
     </section>
-    <div class="main-footer__copy">
+    <!--  <div class="main-footer__copy">
         <p>
             <a href="http://cmarketing.cl/">
                 Contact Marketing 
             </a> Todos los derechos Reservados
         </p>
-    </div>
+    </div>-->
 
 @endsection

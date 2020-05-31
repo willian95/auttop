@@ -1,7 +1,4 @@
 
-$(document).ready(function () {
-
-
 $('.single-banner').slick({
   dots: true,
   autoplay:true,
@@ -9,17 +6,13 @@ $('.single-banner').slick({
   autoplaySpeed: 2000,
   fade: true
 });
-});
 
-	const responsiveBtnIcon = document.querySelector(".responsive-menu-btn");
-const navMenu = document.querySelector(".nav__menu");
-
-responsiveBtnIcon.addEventListener("click", () => {
-  responsiveBtnIcon.classList.toggle("--is-open");
-  navMenu.classList.toggle("--is-open");
-});
-
-
-
+// Menú responsive
+$(function () {
+  $('[data-toggle="offcanvas"]').on('click', function () {
+    $('.offcanvas-collapse').toggleClass('open');
+    $('body').toggleClasss('offcanvas-expanded');
+  })
+})
 
 

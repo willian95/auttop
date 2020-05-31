@@ -9,8 +9,8 @@
     <section  class="form" id="contact-section" >
         <div class="container">
             
-            <div class="row">
-                <div class="col-12" v-for="category in categories">
+            <div class="row ">
+                <div class="col-12 shadow__tables" v-for="category in categories">
                     <table class="table" style="width: 100%;">
                         <thead>
                             <tr>

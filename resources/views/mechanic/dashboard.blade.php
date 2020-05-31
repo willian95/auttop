@@ -6,6 +6,7 @@
 
     <div class="container">
 
+    <div class="bg__tables">
         <div class="row">
             <div class="col-12">
 
@@ -29,10 +30,10 @@
                             <td v-cloak>@{{ order.client.address }}</td>
                             <td v-cloak>@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</td>
                             <td v-cloak>
-                                <a :href="'{{ url('/order/number') }}'+'/'+order.client_link" v-if="order.status_id >= 2">ver</a>
+                                <a class="btn btn-success text-white"  :href="'{{ url('/order/number') }}'+'/'+order.client_link" v-if="order.status_id >= 2">ver</a>
                             </td>
                             <td v-cloak>
-                                <a v-if="order.status.id == 3" :href="'{{ url('/') }}'+'/mechanic/diagnostic/check/'+order.id" class="btn btn-success text-white">Chequear</a>
+                                <a  v-if="order.status.id == 3" :href="'{{ url('/') }}'+'/mechanic/diagnostic/check/'+order.id" class="btn btn-success text-white">Chequear</a>
                                 <a v-if="order.status.id == 7" class="btn btn-success text-white" @click="notificationCarOnDelivery(order.id)">Auto Camino a tu lugar</a>
                                 <a v-if="order.status.id == 8" class="btn btn-success text-white" @click="notificationCarFinished(order.id)">Vehiculo entregado</a>
                             </td>
@@ -53,6 +54,7 @@
                 </nav>
             </div>
         </div>
+    </div>
 
     </div>
 

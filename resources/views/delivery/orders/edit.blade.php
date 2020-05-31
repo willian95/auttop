@@ -8,163 +8,172 @@
     @include('partials.user.navbar')
     <section  class="form" id="contact-section" >
         <div class="container">
-            <div class="mask">
+            <div class="">
         
-            	<form action="">
-                    <div class="title-form">
-                        <div>
-                              <h2 style=" text-align: center; font-weight: bold; font-size: 20px;    margin-bottom: 10%;    color: #2a497e;" class="">Orden de Trabajo</h2>
-                           </div>
-                           <div class="logo-form">
-                                <img style="width: 50px; height: 50px;"src="{{ asset('assets/img/logo.png') }}">
-                           </div>
-                    </div>
-                    <div style="margin-bottom: 50px;">
-                        <div class="form-group row">
-    
-                            <div class="col-md-6 mb-4">
-                                <input type="text" class="form-control" placeholder="Rut" v-model="rut" readonly>
-                            </div>
-                
-    
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Nombre"  v-model="name" readonly>
-                      
-                            </div>
-                        </div>
-       
-    
-                        <div class="form-group row">
-                            <div class="col-md-6 mb-4">
-                                <input type="text" class="form-control" placeholder="Fono"  v-model="telephone" id="telephone" @click="setNumber()" @keyup="checkNumber()" @keypress="isNumber($event)" readonly>
-                      
-                            </div>
-              
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Dirección"  v-model="address" readonly>
-                      
-                            </div>
-                        </div>
-            
-                        <div class="form-group row">
-                            <div class="col-md-6 mb-4">
-                                <input type="text" class="form-control" placeholder="Comuna"  v-model="location">
-                      
-                            </div>
-                
-    
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" placeholder="Correo"  v-model="email">
-                      
-                            </div>
-                        </div> 
-                    </div>
-           
-                    <div style="margin-bottom: 50px;">
-                        <div class="form-group row">
-                    
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Patente"  v-model="patent" readonly>
-                      
-                            </div>
-                    
-    
-                            <div class="col-md-6 mb-6">
-                                <input type="text" class="form-control" placeholder="Marca"  v-model="brand">
-                      
-                            </div>
-                
-                        </div>
-           
-    
-                        <div class="form-group row">
-                            <div class="col-md-6 mb-4">
-                                <input type="number" class="form-control" placeholder="Año"  v-model="year">
-                            </div>
-    
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Modelo"  v-model="model">
-                            </div>
-                
-                        </div>
-          
-                        <div class="form-group row">
-                            <div class="col-md-6 mb-4">
-                                <input type="text" class="form-control" placeholder="Color"  v-model="color">
-                      
-                            </div>
-                            <div class="col-md-6">
-                            
-                            </div>  
-                    
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6 mb-4">
-                                <select v-model="gas_amount" class="form-control">
-                                    <option value="" disabled>Cantidad de combustible</option>
-                                    <option value="1">Vacío</option>
-                                    <option value="2">Un cuarto</option>
-                                    <option value="3">Medio tanque</option>
-                                    <option value="4">Tres cuartos de tanque</option>
-                                    <option value="5">Full</option>
-                                </select>    
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Kms"  v-model="kilometers" @keypress="isNumber($event)">
-                            </div>
-                        </div>
-                    </div>
-      
-                    <div style="margin-bottom: 50px;">
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                   <textarea class="form-control" id="" cols="30" rows="10" placeholder="Comentarios"  v-model="comments"></textarea>
-                      
-                            </div>
-                
-               
-                        </div>
-    
-                  <!--<div class="form-group row">
-                    <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="Ingreso de Fondos: Exterior o Interior">
-                    </div>
-              
-               
-                  </div>-->
-    
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <h3 class="text-center">Servicios</h3>
-                            </div>
+            	<form action="" class="grid__form">
+                    <div class="grid__form__item">
+                        <div class="title-form">
+                           <div>
+                            <h2 style=" " class="">Orden de Trabajo</h2>
+                           </div>                            
                         </div>
 
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>servicio</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(service, index) in services">
-                                            <td v-cloak>@{{ index + 1 }}</td>
-                                            <td v-cloak>@{{ service.service.name }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="form__style">
+                            <div class="form-group row">
+        
+                                <div class="col-md-6 ">
+                                    <label hidden >Rut</label>
+                                    <input type="text" class="form-control" placeholder="Rut" v-model="rut" readonly>
+                                </div>
+       
+                                <div class="col-md-6">
+                                    <label hidden >Nombre</label>
+                                    <input type="text" class="form-control" placeholder="Nombre"  v-model="name" readonly>
+                          
+                                </div>
+                            </div>
+                            <div class="form__style">
+                  
+        
+                                <div class="form-group row">
+                                   
+                                    <div class="col-md-12">
+                                        <label hidden >Dirección</label>
+                                        <input type="text" class="form-control" placeholder="Dirección"  v-model="address" readonly>
+                              
+                                    </div>
+                                </div>
+                    
+                            </div>
+        
+                            <div class="form-group row">
+                                <div class="col-md-6 ">
+                                    <label hidden >Fono</label>
+                                    <input type="text" class="form-control" placeholder="Fono"  v-model="telephone" id="telephone" @click="setNumber()" @keyup="checkNumber()" @keypress="isNumber($event)" readonly>
+                          
+                                </div>
+                  
+                                <div class="col-md-6 ">
+                                    <label hidden for="">Comuna</label>
+                                    <input type="text" class="form-control" placeholder="Comuna"  v-model="location">
+                          
+                                </div>
+                    
+                            </div>
+                
+                            <div class="form-group row">
+                               
+        
+                                <div class="col-md-6">
+                                    <label hidden for="">Email</label>
+                                    <input type="email" class="form-control" placeholder="Correo"  v-model="email">
+                          
+                                </div>
+                                <div class="col-md-6">
+                                    <label hidden for="">Patente</label>
+                                    <input type="text" class="form-control" placeholder="Patente"  v-model="patent" readonly>
+                          
+                                </div>
+                            </div> 
+                        </div>
+                    
+               
+                        <div class="form__style">
+                            <div class="form-group row">
+
+                                <div class="col-md-6 mb-6">
+                                    <label hidden for="">Marca</label>
+                                    <input type="text" class="form-control" placeholder="Marca"  v-model="brand">
+                          
+                                </div>
+                                <div class="col-md-6 ">
+                                    <label hidden for="">Año</label>
+                                    <input type="number" class="form-control" placeholder="Año"  v-model="year">
+                                </div>
+        
+                    
+                            </div>
+               
+        
+                            <div class="form-group row">
+                                
+                                <div class="col-md-6">
+                                    <label hidden for="">Modelo</label>
+                                    <input type="text" class="form-control" placeholder="Modelo"  v-model="model">
+                                </div>
+                                <div class="col-md-6 ">
+                                    <label hidden for="">Color</label>
+                                    <input type="text" class="form-control" placeholder="Color"  v-model="color">
+                          
+                                </div>
+                            </div>
+              
+                            <div class="form-group row">
+                                <div class="col-md-6 ">
+                                    <select v-model="gas_amount" class="form-control">
+                                        <option value="" disabled>Cantidad de combustible</option>
+                                        <option value="1">Vacío</option>
+                                        <option value="2">Un cuarto</option>
+                                        <option value="3">Medio tanque</option>
+                                        <option value="4">Tres cuartos de tanque</option>
+                                        <option value="5">Full</option>
+                                    </select>    
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Kms"  v-model="kilometers" @keypress="isNumber($event)">
+                                </div>
                             </div>
                         </div>
-    
-                        <div style="display: flex;justify-content: center;"class="form-group row">
-                            <div style="text-align: center;" class="col-md-6">
-            
-                                <button style="color: #fff;"class="btn-direction" type="button" @click="revision()">Enviar</button>
+          
+                        <div class="form__style">
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                       <textarea class="form-control" id="" cols="30" rows="6" placeholder="Comentarios"  v-model="comments"></textarea>
+                          
+                                </div>
+                    
+                   
                             </div>
+                       </div>
+                    
+                   </div>
+                
+                   <div class="grid__form__item">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <h3 class="">Servicios</h3>
                         </div>
                     </div>
+                    <!---servico-->
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>servicio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(service, index) in services">
+                                        <td v-cloak>@{{ index + 1 }}</td>
+                                        <td v-cloak>@{{ service.service.name }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div  class="col-md-6">
+        
+                            <button style="color: #fff;"class="btn__mec" type="button" @click="revision()">Enviar</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                    
                 </form>
             </div>
         </div>

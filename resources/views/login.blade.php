@@ -5,28 +5,34 @@
     <div class="main-wrapper">
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative" style="background-color:#c8d1df;">
             <div class="auth-box row no-gutters">
-                <div class="col-lg-6 col-md-5 modal-bg-img" style="background-image: url('assets/img/car2.jpg');"></div>
-                <div class="col-lg-6 col-md-7 bg-white">
+                <div class="col-lg-6 col-md-5 modal-bg-img" style="background-image: url('assets/img/car2.jpg');">
+                    <div class="overlay__login">
+
+                    </div>
+                    <div class="text-center" style="    z-index: 1;">
+                        <img src="{{ asset('assets/img/logo-blanco.png') }}" alt="wrapkit">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-7 bg-white center login_style">
                     <div class="p-3">
-                        <div class="text-center">
-                            <img src="{{ asset('assets/img/logo.png') }}" alt="wrapkit">
-                        </div>
-                        <h2 style="font-size: 25px" class="mt-3 text-center">Login</h2>
-                        <p class="text-center">Ingresa los siguientes datos:</p>
+                       
+                        <h2 style="font-size: 25px" class="mt-3 text-center">Inicio de sesión</h2>
+                  
                         <div class="mt-4">
-                            <div class="row">
-                            <div class="col-lg-12">
+                            <div class="row center">
+                            <div class="col-lg-8">
                                 <div class="form-group">
-                                <input class="form-control" id="email" type="email" placeholder="Email" v-model="email">
+                                    
+                                <input class="form-control" id="email" type="email" placeholder="Email" v-model="email" autocomplete="">
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-8">
                                 <div class="form-group">
                                 <input class="form-control" id="pwd" type="password" placeholder="Contraseña" v-model="password">
                                 </div>
                             </div>
-                            <div class="col-lg-12 text-center">
-                                <button style="font-weight: bold;" type="button" class="btn btn-block btn-dark" @click="login()">Ingresar</button>
+                            <div class="col-lg-8 text-center">
+                                <button  type="button" class="btn btn-block btn-dark btn-login" @click="login()">Ingresar</button>
                             </div>
                             </div>
                         </div>

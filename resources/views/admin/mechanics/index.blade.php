@@ -3,18 +3,27 @@
 @section('content')
 
     @include('partials.admin.navbar')
-    <div class="container form" id="contact-section">
-        <div class="row">
+    <div class="container form dash" id="contact-section">
+        <div class="top_title">
+            <h3 class="text-center">Mecanicos</h3>
+          
+          
+            <button class="btn btn-success mr-5" data-toggle="modal" data-target="#createMechanic">Crear  <img src="{{ asset('assets/img/iconos/bx-list-plus.svg') }}" alt=""></button>
+
+              
+        </div>
+       <!--- <div class="row">
             <div class="col-12">
                 <h3 class="text-center">Mecanicos</h3>
             </div>
-        </div>
+        </div>--->
+     <div class="bg__tables mt-15">
         <div class="row">
-            <div class="col-12">
+           <!--- <div class="col-12">
                 <p class="text-center">
                     <button class="btn btn-success" data-toggle="modal" data-target="#createMechanic">Crear</button>
                 </p>
-            </div>
+            </div>--->
             <div class="col-12">
                 <table class="table">
                     <thead>
@@ -52,6 +61,7 @@
                 </nav>
             </div>
         </div>
+     </div>
     </div>
 
     <!-- modal -->

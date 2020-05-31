@@ -10,7 +10,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/logo.png') }}">
     <title>Login Auttop </title>
     <!-- Custom CSS -->
+    <link href="{{ asset('assets/css/font-awesome.css') }}">
     <link href="{{ asset('assets/css/style-login.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style-login.css') }}" rel="stylesheet">
+
 </head>
 <body>
     

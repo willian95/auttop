@@ -1,78 +1,291 @@
 @media screen and (min-width: 0px) and (max-width: 767px) {
 
-.title-banner {
-    text-transform: uppercase;
-    font-size: 35px;
-}
-
-.btn-direction {
-    font-size: 15px;
+    .title-banner {
+        text-transform: uppercase;
+        font-size: 35px;
     }
-.logos img {
-    width: 50%;
-}
 
-.main-footer__copy {
+    .btn-direction {
+        font-size: 15px;
+    }
 
-    font-size: 14px;
+    .logos img {
+        width: 50%;
+    }
+
+    .main-footer__copy {
+
+        font-size: 14px;
     }
 
     .logo img {
-    width: 40%;
+        width: 40%;
+    }
+
+    .logo-form img {
+        width: auto !important;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .responsive-menu-btn svg {
+        position: absolute;
+        top: 20%;
+    }
+
+    .info-serv {
+        height: auto;
+    }
+
+    .title-serv {
+        width: auto;
+    }
+
+    #accordion {
+        width: 100%;
+        padding: 20px;
+    }
+
+    #headingOne {
+        height: 10vh;
+
+    }
+
+    .nav__menu {
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .fixed-top {
+        position: fixed;
+
+        width: 100%;
+        height: auto;
+        box-shadow: 0px 0px 15px #00000030;
+    }
+
+    .logo_admin {
+        width: 50% !important;
+        position: inherit;
+        margin-top: -12px;
+    }
+
+    .main-brand {
+        display: flex;
+    }
+
+    .navbar-nav {
+
+        margin-top: 20px;
+
+    }
+
+    .content__grid {
+        grid-template-columns: 100%;
+    }
+
+    .top_title {
+
+        position: inherit;
+        margin-top: 100px;
+    }
+
+    .mr-5,
+    .mx-5 {
+        margin-right: 0rem !important;
+    }
+
+    .top_title h3 {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .top_title {
+        background: transparent;
+
+        align-items: center;
+        box-shadow: none;
+    }
+
+    .top_title .btn-success {
+
+        padding: 9px 10px;
+
+    }
+
+    .m140 {
+        margin-top: 30px;
+    }
+
+    .resgistros {
+
+        margin: 0;
+        padding: 10px;
+    }
+
+    .resgistros h5 {
+        font-size: 10px;
+    }
+
+
+    .bg__tables {
+
+        padding: 20px;
+        margin: 0;
+        margin-top: 15px;
+
+    }
+
+    .over {
+        overflow-x: scroll;
+    }
+
+    .btn-search {
+        position: absolute;
+        right: 0;
+    }
+   table .btn-success {
+    width: 82px;
+        margin-bottom: 10px;
+    }
+    .bg__tables .row{
+        overflow-x: scroll;
+    }
+    .form-control-search {
+        width: 100%;
+        margin-left: 0;
+    }
+    .mt-120{
+        margin: 0;
+    }
+    .grid__form {
+       grid-template-columns: 1fr;     
+    }
+    form {
+     
+        padding: 0;
+     
+    }
+  .form__style  input, .form__style select {
+     
+        margin-bottom: 10px;
+    }
+    .logo{
+        text-align: center;
+    }
 }
 
-.logo-form img{
-	width: auto!important;
-}
 
-h2{    font-size: 18px;}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #accordion {
+        width: 90%;
+    }
 
-.responsive-menu-btn svg {
-    position: absolute;
-    top: 20%;
-}
+    .title-serv {
+        display: flex;
+        justify-content: space-between;
+        /* margin-bottom: 10%; */
+        align-items: baseline;
+        width: 90%;
+    }
 
-.info-serv{
-	height: auto;
-}
+    .navbar-expand-md .navbar-toggler {
+        display: initial;
+    }
 
-.title-serv{
-	width: auto;
-}
+    .nav__menu {
+        justify-content: center;
+        height: 100vh;
+    }
 
-#accordion {
-       width: 100%;
-    padding: 20px;
-}
-#headingOne{
-	    height: 10vh;
+    .fixed-top {
+        position: fixed;
 
-}
+        width: 100%;
+        height: auto;
+        box-shadow: 0px 0px 15px #00000030;
+    }
 
-.nav__menu{
-	    justify-content: center;
-    height: 100vh;
-}
-}
+    .logo_admin {
+        width: 25% !important;
+        position: inherit;
+        margin-top: -12px;
+    }
+
+    .main-brand {
+        display: flex;
+    }
+
+    .navbar-nav {
+
+        margin-top: 20px;
+
+    }
+
+    .content__grid {
+        grid-template-columns: 100%;
+    }
+
+    .top_title {
+
+        position: inherit;
+        margin-top: 100px;
+    }
+
+    .mr-5,
+    .mx-5 {
+        margin-right: 0rem !important;
+    }
+
+    .top_title h3 {
+
+        margin-left: 6%;
+    }
+
+    .top_title .btn-success {
+
+        padding: 9px 10px;
+
+    }
+
+    .m140 {
+        margin-top: 30px;
+    }
+
+    .resgistros {
+
+        margin: 0;
+        padding: 10px;
+    }
 
 
-@media screen and (min-width: 768px) and (max-width: 1024px){
-	#accordion {
-    width: 90%;
-}
+    .bg__tables {
 
-.title-serv {
-    display: flex;
-    justify-content: space-between;
-    /* margin-bottom: 10%; */
-    align-items: baseline;
-    width: 90%;
+        padding: 20px;
+        margin: 0;
+        margin-top: 15px;
+
+    }
+
+    .over {
+        overflow-x: scroll;
+    }
+
+    .offcanvas-collapse.open {
+        left: 500px;
+
+    }
+    .mt-120{
+        margin: 0;
+    }
+    .grid__form {
+       grid-template-columns: 1fr;     
     }
 }
 
 
 
-@media screen and (min-width: 1024px) and (max-width: 1366px) {
-
-
-}
+@media screen and (min-width: 1024px) and (max-width: 1366px) {}
