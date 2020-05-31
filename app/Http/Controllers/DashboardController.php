@@ -27,7 +27,7 @@ class DashboardController extends Controller
     function take(){
         try{
 
-            $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '<', 12)->take(10)->orderBy('id', 'desc')->get();
+            $orders = Order::with('status', 'car', 'user', 'client', 'payments')->whereHas("car", "user")->where('status_id', '<', 12)->take(10)->orderBy('id', 'desc')->get();
             return response()->json(["success" => true, "orders" => $orders]);
 
         }catch(\Exception $e){

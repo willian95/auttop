@@ -52,10 +52,10 @@
                             
                             <tr v-for="(order, index) in orders" v-cloak>
                                 <th v-cloak>@{{ index + 1 }}</th>
-                                <td v-cloak>@{{ order.client.name }}</td>
-                                <td v-cloak>@{{ order.client.rut }}</td>
-                                <td v-cloak>@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</td>
-                                <td v-cloak>@{{ order.car.patent }}</td>
+                                <td v-cloak><span v-if="order.client">@{{ order.client.name }}</span></td>
+                                <td v-cloak><span v-if="order.client">@{{ order.client.rut }}</span></td>
+                                <td v-cloak><span v-if="order.car">@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</span></td>
+                                <td v-cloak><span v-if="order.car">@{{ order.car.patent }}</span></td>
                                 <td v-cloak>@{{ order.created_at.substring(0, 10) }}</td>
                                 <td v-cloak>@{{ order.status.text }}</td>
                             
@@ -187,10 +187,10 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(service, index) in orderServices">
-                                            <td v-cloak>@{{ index + 1 }}</td>
-                                            <td v-cloak>@{{ service.service.name }}</td>
-                                            <td v-cloak>@{{ service.price }}</td>
-                                            <td v-cloak>
+                                            <td v-cloa  k>@{{ index + 1 }}</td>
+                                            <td v-cloa  k>@{{ service.service.name }}</td>
+                                            <td v-cloa  k>@{{ service.price }}</td>
+                                            <td v-cloa  k>
                                                 <button class="btn btn-danger" type="button" @click="removeService(service.service.id)">X</button>
                                             </td>
                                         </tr>
