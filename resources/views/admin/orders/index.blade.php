@@ -40,7 +40,7 @@
                             <td v-cloak>@{{ order.created_at.substring(0, 10) }}</td>
                             <td v-cloak>@{{ order.status.text }}</td>
                             <td v-cloak>
-                                <a :href="'{{ url('/order/number') }}'+'/'+order.client_link" v-if="order.status_id >= 2">ver</a>
+                                <a class="btn btn-success text-white" :href="'{{ url('/order/number') }}'+'/'+order.client_link" v-if="order.status_id >= 2">ver</a>
                             </td>
                             <td v-cloak>
                                 @if(\Auth::user()->role_id == 3)
