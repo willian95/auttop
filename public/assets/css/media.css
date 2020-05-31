@@ -27,7 +27,7 @@
     }
 
     h2 {
-        font-size: 18px;
+        font-size: 18px!important;
     }
 
     .responsive-menu-btn svg {
@@ -45,9 +45,11 @@
 
     #accordion {
         width: 100%;
-        padding: 20px;
+        padding: 0px;
     }
-
+    .grid__form__item__order {
+        margin-top: 80px;
+    }
     #headingOne {
         height: 10vh;
 
@@ -162,7 +164,9 @@
         margin: 0;
     }
     .grid__form {
-       grid-template-columns: 1fr;     
+        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column-reverse;
     }
     form {
      
@@ -282,7 +286,9 @@
         margin: 0;
     }
     .grid__form {
-       grid-template-columns: 1fr;     
+        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column-reverse;   
     }
 }
 

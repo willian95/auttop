@@ -5,14 +5,20 @@
     @include('partials.admin.navbar')
 
     <div class="container form dash" id="contact-section">
-        <div class="row">
+        <div class="top_title">
+            <h3 class="">Diagnostico</h3>
+               
+        </div>
+
+     <!---   <div class="row">
             <div class="col-12">
                 <h3 class="text-center">
                     Diagnostico
                 </h3>
             </div>
-        </div>
+        </div>--->
         
+     <div class="bg__tables m140">
         <div class="row" v-if="approved.length > 0">
             <div class="col-12">
                 <table class="table">
@@ -92,6 +98,7 @@
                 </div>
             </div>
         </div>
+     </div>
     </div>
 
 @endsection
