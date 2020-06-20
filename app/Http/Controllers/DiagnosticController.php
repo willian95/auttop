@@ -30,7 +30,7 @@ class DiagnosticController extends Controller
             $totalServices = Service::with('category')->count();
 
             $actualCount = count($request->checkedServices);
-            
+            dd($actualCount, $totalServices, $previousCount);
             if($actualCount == ($totalServices - $previousCount)){
 
                 foreach($request->checkedServices as $service){
