@@ -27,7 +27,7 @@ class DiagnosticController extends Controller
         try{
 
             $previousCount = Diagnostic::where('order_id', $request->orderId)->count();
-            $totalServices = Service::with('category')->count();
+            $totalServices = Service::has('category')->count();
 
             $actualCount = count($request->checkedServices);
             dd($actualCount, $totalServices, $previousCount);
