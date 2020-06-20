@@ -11,7 +11,7 @@
                     Diagnostico
                 </h3>
             </div>
-        </div>--->
+        </div>
         
      <div class="bg__tables m140">
         <div class="row" v-if="approved.length > 0">
