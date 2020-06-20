@@ -198,7 +198,7 @@
                     address:"{{ $order->client->address }}",
                     location:"{{ $order->client->location }}",
                     email:"{{ $order->client->email }}",
-                    patent:"{{ $order->car->patent }}",
+                    patent:"{{ strtoupper($order->car->patent) }}",
                     brand:"{{ $order->car->brand }}",
                     year:"{{ $order->car->year }}",
                     model:"{{ $order->car->model }}",
