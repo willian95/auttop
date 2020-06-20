@@ -27,7 +27,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(order, index) in orders" v-if="order.status.id == 1 || order.status.id == 2">
+                            <tr v-for="(order, index) in orders" v-if="(order.status.id == 1 && order.client && order.car) || (order.status.id == 2 && order.client && order.car)">
                                 <th v-cloak>@{{ order.id }}</th>
                                 <td v-cloak>@{{ order.client.name }}</td>
                                 <td v-cloak>@{{ order.client.telephone }}</td>

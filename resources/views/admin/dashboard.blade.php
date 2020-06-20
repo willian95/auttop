@@ -59,7 +59,7 @@
                         </thead>
                         <tbody>
                             
-                            <tr v-for="(order, index) in orders" v-cloak>
+                            <tr v-for="(order, index) in orders" v-cloak v-if="order.client && order.car">
                                 <th v-cloak>@{{ order.id }}</th>
                                 <td v-cloak><span v-if="order.client">@{{ order.client.name }}</span></td>
                                 <td v-cloak><span v-if="order.client">@{{ order.client.rut }}</span></td>
