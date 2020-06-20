@@ -11,8 +11,9 @@
                     Diagnostico
                 </h3>
             </div>
-        </div>
+        </div>--->
         
+     <div class="bg__tables m140">
         <div class="row" v-if="approved.length > 0">
             <div class="col-12">
                 <table class="table">
@@ -92,6 +93,7 @@
                 </div>
             </div>
         </div>
+     </div>
     </div>
 
 @endsection

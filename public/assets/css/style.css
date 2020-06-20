@@ -740,7 +740,7 @@ li {
     grid-template-columns: 15% 85%;
     background: #607d8b0a;
     overflow: hidden;
-    height: max-content;
+    height: 100%;
 }
 
 .nav-item {
@@ -792,7 +792,7 @@ li {
 }
 
 .m140 {
-    margin-top: 140px;
+    margin-top: 140px!important;
 }
 
 .logo__nav:hover {
@@ -1132,4 +1132,17 @@ input[type=checkbox], input[type=radio] {
 .grid__form__item__order .card {
 
     margin-bottom: 15px;
+}
+.page-item{
+    display: flex;
+}
+.page-item a{
+    margin-right: 10px;
+}
+.page-item a:hover {
+   
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #fb780a;
+    border-color: #fb780a;
 }
