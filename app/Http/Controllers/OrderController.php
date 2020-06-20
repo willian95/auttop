@@ -48,6 +48,7 @@ class OrderController extends Controller
                 ['name' => $request->name, 
                 'telephone' => $request->telephone,
                 'address' => $request->address,
+                'location' => $request->commune
                 ]
             );
 
@@ -55,7 +56,8 @@ class OrderController extends Controller
                 ['patent' => strtolower($request->patent)],
                 ['brand' => $request->brand, 
                 'model' => $request->model,
-                'year' => $request->year
+                'year' => $request->year,
+                "color" => $request->color
                 ]
             );
 
@@ -108,12 +110,12 @@ class OrderController extends Controller
             $skip = ($page - 1) * 15;
             
             if(\Auth::user()->role_id == 2){
-                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>', 3)->where('status_id', '<', 9)->get();
+                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>', 3)->where('status_id', '<', 9)->orderBy('id', 'desc')->get();
                 $ordersCount = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>', 3)->where('status_id', '<', 9)->count();
             }
 
             else if(\Auth::user()->role_id == 3){
-                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>=', 1)->where('status_id', '<', 3)->get();
+                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>=', 1)->where('status_id', '<', 3)->orderBy('id', 'desc')->get();
                 $ordersCount = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>=', 1)->where('status_id', '<', 3)->count();
             }
 
@@ -269,8 +271,14 @@ class OrderController extends Controller
 
     function search($rut){
 
-        $clients =  Client::where('clients.rut', 'like', $rut.'%')->get();
-        $orders = Order::whereIn('client_id', $clients->toArray())->with('status', 'car', 'user', 'client', 'payments')->where('status_id', '<', 12)->get();
+        $clientsArray = [];
+        $clients =  Client::where('rut', 'like', '%'.$rut.'%')->get();
+        
+        foreach($clients as $client){
+            array_push($clientsArray, $client->id);
+        }
+
+        $orders = Order::whereIn('client_id', $clientsArray)->with('status', 'car', 'user', 'client', 'payments')->where('status_id', '<', 12)->get();
 
         return response()->json(["success" => true, "orders" => $orders]);
 

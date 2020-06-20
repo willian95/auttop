@@ -4,56 +4,70 @@
 
 @include('partials.admin.navbar')
 <section  class="form" id="contact-section" >
-        <div class="container">
-            <div class="mask">
-        
-            	<form action="">
-                    <div class="title-form">
-                        <div>
-                              <h2 style=" text-align: center; font-weight: bold; font-size: 20px;    margin-bottom: 10%;    color: #2a497e;" class="">Editar Cliente</h2>
-                           </div>
-                           <div class="logo-form">
-                                <img style="width: 50px; height: 50px;"src="{{ asset('assets/img/logo.png') }}">
-                           </div>
+        <div class="container pl50">
+            	
+            <div class="title-form">
+                <div>
+                    <h2 style=" text-align: center; font-weight: bold; font-size: 20px;    margin-bottom: 10%;    color: #2a497e;" class="">Editar Cliente</h2>
+                </div>
+                <div class="logo-form">
+                    <img style="width: 50px; height: 50px;"src="{{ asset('assets/img/logo.png') }}">
+                </div>
+            </div>
+            <div style="margin-bottom: 50px;">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Rut</label>
+                            <input type="text" class="form-control" placeholder="Rut" v-model="rut" readonly>
+                        </div>
                     </div>
-                    <div style="margin-bottom: 50px;">
-                        <div class="form-group row">
-    
-                            <div class="col-md-4 mb-4">
-                                <input type="text" class="form-control" placeholder="Rut" v-model="rut" readonly>
-                            </div>
-    
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Nombre"  v-model="name">
-                            </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Nombre</label>
+                            <input type="text" class="form-control" placeholder="Nombre"  v-model="name">
                         </div>
-       
-    
-                        <div class="form-group row">
-                            <div class="col-md-6 mb-4">
-                                <input type="text" class="form-control" placeholder="Fono"  v-model="telephone" id="telephone" @click="setNumber()" @keyup="checkNumber()" @keypress="isNumber($event)">
-                      
-                            </div>
-              
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Dirección"  v-model="address">
-                      
-                            </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-group">
+                            <label for="">Teléfono</label>
+                            <input type="text" class="form-control" placeholder="Fono"  v-model="telephone" id="telephone" @click="setNumber()" @keyup="checkNumber()" @keypress="isNumber($event)">
                         </div>
-            
-                        <div class="form-group row">
-                            <div class="col-md-6 mb-4">
-                                <input type="text" class="form-control" placeholder="Comuna"  v-model="location">
-                      
-                            </div>
                 
-    
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" placeholder="Correo"  v-model="email">
-                      
-                            </div>
-                        </div> 
                     </div>
+        
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Teléfono</label>
+                            <input type="text" class="form-control" placeholder="Dirección"  v-model="address">
+                        </div>
+                
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-group">
+                            <label for="">Comuna</label>
+                            <input type="text" class="form-control" placeholder="Comuna"  v-model="location">
+                        </div>
+                    </div>
+        
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" class="form-control" placeholder="Correo"  v-model="email">
+                        </div>
+                    </div>
+                </div> 
+            </div>
            
       
                     <div style="margin-bottom: 50px;">
@@ -64,8 +78,8 @@
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+               
+           
         </div>
     </section>
 

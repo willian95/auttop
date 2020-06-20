@@ -58,18 +58,25 @@ class MechanicController extends Controller
 
         try{
 
-            $user = User::find($request->id);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->password_reveal = $request->password;
-            $user->update();
+            if(User::where("email", $request->email)->where("id", "<>", $request->id)->count() <= 0){
+                $user = User::find($request->id);
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = bcrypt($request->password);
+                $user->password_reveal = $request->password;
+                $user->update();
 
-            return response()->json(["success" => true, "msg" => "Mecánico actualizado"]);
+                return response()->json(["success" => true, "msg" => "Mecánico actualizado"]);
+            
+            }else{
+
+                return response()->json(["success" => false, "msg" => "Este email ya ha sido tomado"]);
+
+            }
 
         }catch(\Exception $e){
         
-            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine()]);
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
 
         }
 

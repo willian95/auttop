@@ -10,7 +10,7 @@
         <div class="container">
             
             <div class="row ">
-                <div class="col-12 shadow__tables" v-for="category in categories">
+                <div class="col-12 shadow__tables" v-for="category in categories" v-if="category.services.length > 0">
                     <table class="table" style="width: 100%;">
                         <thead>
                             <tr>

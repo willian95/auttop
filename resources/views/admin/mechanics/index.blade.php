@@ -8,7 +8,7 @@
             <h3 class="text-center">Mecanicos</h3>
           
           
-            <button class="btn btn-success mr-5" data-toggle="modal" data-target="#createMechanic">Crear  <img src="{{ asset('assets/img/iconos/bx-list-plus.svg') }}" alt=""></button>
+            <button class="btn btn-success mr-5" data-toggle="modal" data-target="#createMechanic" @click="create()">Crear  <img src="{{ asset('assets/img/iconos/bx-list-plus.svg') }}" alt=""></button>
 
               
         </div>
@@ -17,7 +17,7 @@
                 <h3 class="text-center">Mecanicos</h3>
             </div>
         </div>--->
-     <div class="bg__tables mt-15">
+     <div class="bg__tables mt-15 pl50">
         <div class="row">
            <!--- <div class="col-12">
                 <p class="text-center">
@@ -54,8 +54,8 @@
             <div class="col-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" v-for="index in pages" :key="index" @click="fetch(index)" >@{{ index }}</a>
+                        <li class="page-item" v-for="index in pages">
+                            <a class="page-link" href="#" :key="index" @click="fetch(index)" >@{{ index }}</a>
                         </li>
                     </ul>
                 </nav>

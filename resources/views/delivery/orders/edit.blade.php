@@ -7,7 +7,7 @@
     
     @include('partials.user.navbar')
     <section  class="form" id="contact-section" >
-        <div class="container">
+        <div class="container pl50">
             <div class="">
         
             	<form action="" class="grid__form">
@@ -22,12 +22,12 @@
                             <div class="form-group row">
         
                                 <div class="col-md-6 ">
-                                    <label hidden >Rut</label>
+                                    <label >Rut</label>
                                     <input type="text" class="form-control" placeholder="Rut" v-model="rut" readonly>
                                 </div>
        
                                 <div class="col-md-6">
-                                    <label hidden >Nombre</label>
+                                    <label >Nombre</label>
                                     <input type="text" class="form-control" placeholder="Nombre"  v-model="name" readonly>
                           
                                 </div>
@@ -38,7 +38,7 @@
                                 <div class="form-group row">
                                    
                                     <div class="col-md-12">
-                                        <label hidden >Dirección</label>
+                                        <label >Dirección</label>
                                         <input type="text" class="form-control" placeholder="Dirección"  v-model="address" readonly>
                               
                                     </div>
@@ -48,13 +48,13 @@
         
                             <div class="form-group row">
                                 <div class="col-md-6 ">
-                                    <label hidden >Fono</label>
+                                    <label >Fono</label>
                                     <input type="text" class="form-control" placeholder="Fono"  v-model="telephone" id="telephone" @click="setNumber()" @keyup="checkNumber()" @keypress="isNumber($event)" readonly>
                           
                                 </div>
                   
                                 <div class="col-md-6 ">
-                                    <label hidden for="">Comuna</label>
+                                    <label for="">Comuna</label>
                                     <input type="text" class="form-control" placeholder="Comuna"  v-model="location">
                           
                                 </div>
@@ -65,12 +65,12 @@
                                
         
                                 <div class="col-md-6">
-                                    <label hidden for="">Email</label>
+                                    <label for="">Email</label>
                                     <input type="email" class="form-control" placeholder="Correo"  v-model="email">
                           
                                 </div>
                                 <div class="col-md-6">
-                                    <label hidden for="">Patente</label>
+                                    <label for="">Patente</label>
                                     <input type="text" class="form-control" placeholder="Patente"  v-model="patent" readonly>
                           
                                 </div>
@@ -82,12 +82,12 @@
                             <div class="form-group row">
 
                                 <div class="col-md-6 mb-6">
-                                    <label hidden for="">Marca</label>
+                                    <label for="">Marca</label>
                                     <input type="text" class="form-control" placeholder="Marca"  v-model="brand">
                           
                                 </div>
                                 <div class="col-md-6 ">
-                                    <label hidden for="">Año</label>
+                                    <label for="">Año</label>
                                     <input type="number" class="form-control" placeholder="Año"  v-model="year">
                                 </div>
         
@@ -98,11 +98,11 @@
                             <div class="form-group row">
                                 
                                 <div class="col-md-6">
-                                    <label hidden for="">Modelo</label>
+                                    <label for="">Modelo</label>
                                     <input type="text" class="form-control" placeholder="Modelo"  v-model="model">
                                 </div>
                                 <div class="col-md-6 ">
-                                    <label hidden for="">Color</label>
+                                    <label for="">Color</label>
                                     <input type="text" class="form-control" placeholder="Color"  v-model="color">
                           
                                 </div>
@@ -110,6 +110,7 @@
               
                             <div class="form-group row">
                                 <div class="col-md-6 ">
+                                    <label for="">Cantidad de combustible</label>
                                     <select v-model="gas_amount" class="form-control">
                                         <option value="" disabled>Cantidad de combustible</option>
                                         <option value="1">Vacío</option>
@@ -120,6 +121,7 @@
                                     </select>    
                                 </div>
                                 <div class="col-md-6">
+                                    <label for="">Kilometraje</label>
                                     <input type="text" class="form-control" placeholder="Kms"  v-model="kilometers" @keypress="isNumber($event)">
                                 </div>
                             </div>
@@ -128,7 +130,8 @@
                         <div class="form__style">
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                       <textarea class="form-control" id="" cols="30" rows="6" placeholder="Comentarios"  v-model="comments"></textarea>
+                                    <label for="">Comentarios</label>
+                                    <textarea class="form-control" id="" cols="30" rows="6" placeholder="Comentarios"  v-model="comments"></textarea>
                           
                                 </div>
                     

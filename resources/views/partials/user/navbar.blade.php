@@ -1,6 +1,6 @@
 <header class="header__main navbar-me container-fluid">
   <div class="logo">
-    <a href="index.html">
+    <a href="{{ url('/') }}">
       <img alt="Auttop" lass="img-navbar"  src="{{ asset('assets/img/logo-blanco.png') }}" >
     </a>
   </div>

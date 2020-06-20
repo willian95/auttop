@@ -184,6 +184,10 @@
         width: 90%;
     }
 
+    /*.pl50{
+        padding-left: 130px;
+    }*/
+
     .title-serv {
         display: flex;
         justify-content: space-between;
@@ -288,4 +292,10 @@
 
 
 
-@media screen and (min-width: 1024px) and (max-width: 1366px) {}
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+
+    .pl50{
+        padding-left: 130px;
+    }
+
+}

@@ -6,7 +6,7 @@
 
     <div class="container">
 
-    <div class="bg__tables">
+    <div class="bg__tables pl50">
         <div class="row">
             <div class="col-12">
 
@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(order, index) in orders">
+                        <tr v-for="(order, index) in orders" v-if="order.status.id == 3 || order.status.id == 7 || order.status.id == 8">
                             <th v-cloak>@{{ order.id }}</th>
                             <td v-cloak>@{{ order.client.name }}</td>
                             <td v-cloak>@{{ order.client.telephone }}</td>

@@ -480,8 +480,8 @@ button.responsive-menu-btn.--is-open {
 }
 
 .form-group {
-    display: flex;
-    justify-content: center;
+    /*display: flex;
+    justify-content: center;*/
 }
 
 .mask {
@@ -766,6 +766,10 @@ li {
 .main-brand a:hover {
     background: transparent;
 }
+
+/*.pl50{
+    padding-left: 100px;
+}*/
 
 .top_title {
     display: flex;

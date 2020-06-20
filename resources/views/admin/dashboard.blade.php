@@ -11,7 +11,7 @@
            
         </div>
 
-       <div class="container m140" >
+       <div class="container m140 pl50" >
             <!-- <div class="row">
                 <div class="col-12">
                     <p class="text-center">
@@ -60,11 +60,11 @@
                         <tbody>
                             
                             <tr v-for="(order, index) in orders" v-cloak>
-                                <th v-cloak>@{{ index + 1 }}</th>
+                                <th v-cloak>@{{ order.id }}</th>
                                 <td v-cloak><span v-if="order.client">@{{ order.client.name }}</span></td>
                                 <td v-cloak><span v-if="order.client">@{{ order.client.rut }}</span></td>
                                 <td v-cloak><span v-if="order.car">@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</span></td>
-                                <td v-cloak><span v-if="order.car">@{{ order.car.patent }}</span></td>
+                                <td v-cloak><span v-if="order.car">@{{ order.car.patent.toUpperCase() }}</span></td>
                                 <td v-cloak>@{{ order.created_at.substring(0, 10) }}</td>
                                 <td v-cloak>@{{ order.status.text }}</td>
                             
@@ -78,7 +78,7 @@
         </div>
     
     </section>
-</div>
+
     <!-- modal -->
 
     <div class="modal fade" id="createODT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,21 +95,29 @@
                     <div class="form-group row">
     
                         <div class="col-lg-5  col-md-10 mb-4">
+                            <label for="">RUT</label>
                             <input type="text" class="form-control" placeholder="Rut" v-model="rut">
                         </div>
 
                         <div>
-                            <button class="btn btn-success btn-search" @click="getClient()" type="button"><img class="filter" src="{{ asset('assets/img/iconos/bx-search-alt.svg') }}" alt=""></button>
+                            <button class="btn btn-success btn-search" style="margin-top: 30px;" @click="getClient()" type="button"><img class="filter" src="{{ asset('assets/img/iconos/bx-search-alt.svg') }}" alt=""></button>
                         </div>
 
                         <div class="col-lg-6">
+                            <label for="">Nombre</label>
                             <input type="text" class="form-control" placeholder="Nombre"  v-model="name">
                         </div>
                     </div>
                     <div class="form-group row">
                      
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            <label for="">Dirección</label>
                             <input type="text" class="form-control" placeholder="Dirección"  v-model="address">
+
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="">Comuna</label>
+                            <input type="text" class="form-control" placeholder="Comuna"  v-model="commune">
 
                         </div>
                     </div>
@@ -117,71 +125,61 @@
 
                     <div class="form-group row">
                         <div class="col-lg-6 mb-4">
+                            <label for="">Teléfono</label>
                             <input type="text" class="form-control" placeholder="Fono"  v-model="telephone" id="telephone" @click="setNumber()" @keyup="checkNumber()" @keypress="isNumber($event)">
                         </div>
                         <div class="col-lg-5  col-md-10 ">
+                            <label for="">Patente</label>
                             <input type="text" class="form-control" placeholder="Patente"  v-model="patent">
                   
                         </div>
                 
                         <div class="">
-                            <button class="btn btn-success btn-search" @click="getCar()" type="button"><img class="filter" src="{{ asset('assets/img/iconos/bx-search-alt.svg') }}" alt=""></button>
+                            <button class="btn btn-success btn-search" style="margin-top: 30px;" @click="getCar()" type="button"><img class="filter" src="{{ asset('assets/img/iconos/bx-search-alt.svg') }}" alt=""></button>
                         </div>
-                    <!---    <div class="col-lg-6">
-                            <input type="text" class="form-control" placeholder="Dirección"  v-model="address">
 
-                        </div>--->
                     </div>
-
-                     <!---<div style="margin-bottom: 50px;">
-                        <div class="form-group row">
-                    
-                            <div class="col-lg-5">
-                                <input type="text" class="form-control" placeholder="Patente"  v-model="patent">
-                      
-                            </div>
-                    
-                            <div class="">
-                                <button class="btn btn-success" @click="getCar()" type="button"><img class="filter" src="{{ asset('assets/img/iconos/bx-search-alt.svg') }}" alt=""></button>
-                            </div>
-    
-                            <div class="col-lg-6 mb-4">
-                                <input type="text" class="form-control" placeholder="Marca"  v-model="brand">
-                      
-                            </div>
-                
-                        </div>--->
            
     
                     <div class="form-group row">
                             
                         <div class="col-lg-6 mb-4">
+                            <label for="">Marca</label>
                             <input type="text" class="form-control" placeholder="Marca"  v-model="brand">
                   
                         </div>
 
-                            <div class="col-lg-6 mb-4">
-                                <input type="number" class="form-control" placeholder="Año"  v-model="year">
-                            </div>
+                        <div class="col-lg-6 mb-4">
+                            <label for="">Año</label>
+                            <input type="number" class="form-control" placeholder="Año"  v-model="year">
+                        </div>
     
-                           
-                
                     </div>
 
-                        <div class="row">
-                        
-                            <div class="col-lg-6 mt-33">
-                                <input type="text" class="form-control" placeholder="Modelo"  v-model="model">
-                            </div>
-                            <div class="col-lg-6">
-                                <label class="asignar" for="">Asignar delivery</label>
-                                <select class="form-control" v-model="delivery" v-cloak>
-                                    <option   :value="delivery.id" v-for="(delivery, index) in deliveries" >
-                                        @{{ delivery.name }}
-                                    </option>
-                                </select>
-                            </div>
+                    <div class="form-group row">
+
+                        <div class="col-lg-6 mb-4">
+                            <label for="">Color</label>
+                            <input type="text" class="form-control" placeholder="Color"  v-model="color">
                         </div>
+
+                    </div>
+
+                    <div class="row">
+                    
+                        <div class="col-lg-6">
+                            <label for="">Modelo</label>
+                            <input type="text" class="form-control" placeholder="Modelo"  v-model="model">
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="asignar" for="">Asignar delivery</label>
+                            <select class="form-control" v-model="delivery">
+                                <option :value="delivery.id" v-for="(delivery, index) in deliveries" >
+                                    @{{ delivery.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
 
                         <div class="form-group row">
                             <div class="col-lg-12 mt-5">
@@ -198,11 +196,12 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-lg-5  col-md-10 mt-33">
+                            <div class="col-lg-5  col-md-10">
+                                <label for="">Precio</label>
                                 <input type="text" class="form-control" placeholder="Precio"  v-model="price">
                             </div>
-                            <div class="col-lg-2 mt-33">
-                                <button class="btn btn-success" type="button" @click="addService()">agregar</button>
+                            <div class="col-lg-2">
+                                <button style="margin-top: 30px;" class="btn btn-success" type="button" @click="addService()">agregar</button>
                             </div>
                         </div>
 
@@ -242,7 +241,7 @@
   
 
     <!-- modal -->
-
+</div>
 @endsection
 
 @push('scripts')
@@ -258,10 +257,12 @@
                     name:"",
                     address:"",
                     email:"",
+                    commune:"",
                     patent:"",
                     brand:"",
                     telephone:"",
                     year:"",
+                    color:"",
                     model:"",
                     serviceIndex:"",
                     price:"",
@@ -418,7 +419,7 @@
                 },
                 store(){
 
-                    axios.post("{{ route('order.store') }}", {rut: this.rut, name: this.name, telephone: this.telephone, address: this.address, patent: this.patent, brand: this.brand, year: this.year, model: this.model, services: this.orderServices, delivery: this.delivery}).then(res => {
+                    axios.post("{{ route('order.store') }}", {rut: this.rut, name: this.name, telephone: this.telephone, address: this.address, patent: this.patent, brand: this.brand, year: this.year, model: this.model, services: this.orderServices, delivery: this.delivery, commune: this.commune, color: this.color}).then(res => {
 
                         //console.log("test", res.data)
 
@@ -432,6 +433,7 @@
                             this.patent = ""
                             this.brand = ""
                             this.year = ""
+                            this.commune=""
                             this.model = ""
                             this.orderServices = []
                             this.delivery = ""

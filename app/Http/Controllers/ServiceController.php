@@ -91,6 +91,7 @@ class ServiceController extends Controller
         try{
 
             $service = Service::find($request->id);
+            $service->delete();
             return response()->json(["success" => true, "msg" => "Servicio eliminado"]);
 
         }catch(\Exception $e){
