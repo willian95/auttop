@@ -31,7 +31,7 @@
                 
             </div>
             <div class="col-4">
-                <p class="text-center">{{ App\Order::with('client', 'car')->count() }} <img src="{{ asset('assets/img/iconos/bx-edit.svg') }}" alt=""></p>
+                <p class="text-center">{{ App\Order::has('client', 'car')->count() }} <img src="{{ asset('assets/img/iconos/bx-edit.svg') }}" alt=""></p>
                 <h5 class="text-center">Ordenes registradas</h5>
                 
             </div>
