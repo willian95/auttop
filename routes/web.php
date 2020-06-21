@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::get("/login", "AuthController@loginIndex");
 Route::post("/login", "AuthController@login");
+Route::get("/logout", "AuthController@logout");
 
 Route::get('/order/number/{client_link}', "OrderController@show");
 Route::get("/order/number/payment/{client_link}", "OrderController@showPayment");

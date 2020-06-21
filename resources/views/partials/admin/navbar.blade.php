@@ -65,6 +65,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('admin.order.index') }}"> <img src="{{ asset('assets/img/iconos/bx-file.svg') }}" alt=""> ODT</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url('/logout') }}"> <img src="{{ asset('assets/img/iconos/bx-file.svg') }}" alt=""> Cerrar sesión</a>
+						</li>
 					</ul>
 				</div>
    			</div>
