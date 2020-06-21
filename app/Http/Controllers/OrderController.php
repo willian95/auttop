@@ -278,7 +278,7 @@ class OrderController extends Controller
             array_push($clientsArray, $client->id);
         }
 
-        $orders = Order::whereIn('client_id', $clientsArray)->with('status', 'car', 'user', 'client', 'payments')->where('status_id', '<', 12)->get();
+        $orders = Order::whereIn('client_id', $clientsArray)->with('status', 'car', 'user', 'client', 'payments')->orderBy("id", "desc")->get();
 
         return response()->json(["success" => true, "orders" => $orders]);
 
