@@ -54,7 +54,8 @@
                 return{
                     email:'',
                     password:"",
-                    authCheck:""
+                    authCheck:false,
+                    roleId:""
                 }
             },
             methods:{
@@ -91,16 +92,7 @@
             },
             mounted(){
                 
-                this.authCheck = "{{ \Auth::check() }}"
-                
-                if(this.authCheck == true){
-                    if("{{ \Auth::user()->role_id }}" == 1)
-                        window.location.href="{{ route('admin.dashboard.index') }}"
-                    else if("{{ \Auth::user()->role_id }}" == 2)
-                        window.location.href="{{ route('mechanic.index') }}"
-                    else if("{{ \Auth::user()->role_id }}" == 3)
-                        window.location.href="{{ route('delivery.index') }}"
-                }
+
             }
 
         })
