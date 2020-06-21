@@ -53,7 +53,8 @@
             data(){
                 return{
                     email:'',
-                    password:""
+                    password:"",
+                    authCheck:""
                 }
             },
             methods:{
@@ -89,7 +90,10 @@
 
             },
             mounted(){
-                if("{{ \Auth::check() }}"){
+                
+                this.authCheck = "{{ \Auth::check() }}"
+                
+                if(this.authCheck == true){
                     if("{{ \Auth::user()->role_id }}" == 1)
                         window.location.href="{{ route('admin.dashboard.index') }}"
                     else if("{{ \Auth::user()->role_id }}" == 2)
