@@ -110,12 +110,12 @@ class OrderController extends Controller
             $skip = ($page - 1) * 15;
             
             if(\Auth::user()->role_id == 2){
-                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>', 3)->orderBy('id', 'desc')->get();
+                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>', 3)->skip($skip)->take(15)->orderBy('id', 'desc')->get();
                 $ordersCount = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>', 3)->count();
             }
 
             else if(\Auth::user()->role_id == 3){
-                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>=', 1)->where('status_id', '<', 3)->orderBy('id', 'desc')->get();
+                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>=', 1)->where('status_id', '<', 3)->skip($skip)->take(15)->orderBy('id', 'desc')->get();
                 $ordersCount = Order::with('status', 'car', 'user', 'client', 'payments')->where('status_id', '>=', 1)->where('status_id', '<', 3)->count();
             }
 
