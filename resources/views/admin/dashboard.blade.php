@@ -115,6 +115,13 @@
                             <input type="text" class="form-control" placeholder="Dirección"  v-model="address">
 
                         </div>
+
+                        <div class="col-lg-6">
+                            <label for="">Correo</label>
+                            <input type="text" class="form-control" placeholder="Correo"  v-model="email">
+
+                        </div>
+
                         <div class="col-lg-6">
                             <label for="">Comuna</label>
                             <input type="text" class="form-control" placeholder="Comuna"  v-model="commune">
@@ -419,7 +426,7 @@
                 },
                 store(){
 
-                    axios.post("{{ route('order.store') }}", {rut: this.rut, name: this.name, telephone: this.telephone, address: this.address, patent: this.patent, brand: this.brand, year: this.year, model: this.model, services: this.orderServices, delivery: this.delivery, commune: this.commune, color: this.color}).then(res => {
+                    axios.post("{{ route('order.store') }}", {rut: this.rut, name: this.name, telephone: this.telephone, address: this.address, patent: this.patent, brand: this.brand, year: this.year, model: this.model, services: this.orderServices, delivery: this.delivery, commune: this.commune, color: this.color, email: this.email}).then(res => {
 
                         //console.log("test", res.data)
 
@@ -437,6 +444,7 @@
                             this.model = ""
                             this.orderServices = []
                             this.delivery = ""
+                            this.email  =""
                             this.getOrders()
 
                         }else{

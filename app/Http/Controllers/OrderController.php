@@ -48,7 +48,8 @@ class OrderController extends Controller
                 ['name' => $request->name, 
                 'telephone' => $request->telephone,
                 'address' => $request->address,
-                'location' => $request->commune
+                'location' => $request->commune,
+                "email" => $request->email
                 ]
             );
 
