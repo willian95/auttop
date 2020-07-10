@@ -28,11 +28,8 @@ class DiagnosticController extends Controller
 
             $previousCount = Diagnostic::where('order_id', $request->orderId)->count();
             $totalServices = Service::has('category')->count();
-
-            dd($previousCount, $totalServices);
-
             $actualCount = count($request->checkedServices);
-            //dd($actualCount, $totalServices, $previousCount);
+            dd($actualCount, $totalServices, $previousCount);
             if($actualCount == ($totalServices - $previousCount)){
 
                 foreach($request->checkedServices as $service){
