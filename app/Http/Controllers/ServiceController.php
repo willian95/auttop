@@ -75,7 +75,7 @@ class ServiceController extends Controller
 
         try{
 
-            $services = Service::all();
+            $services = Service::has("category")->get();
             return response()->json(["success" => true, "services" => $services]);
 
         }catch(\Exception $e){
