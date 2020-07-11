@@ -3,19 +3,18 @@
 @section('content')
 
 @include('partials.admin.navbar')
-<section  class="form" id="contact-section" >
-        <div class="container pl50">
-            	
-            <div class="title-form">
-                <div>
-                    <h2 style=" text-align: center; font-weight: bold; font-size: 20px;    margin-bottom: 10%;    color: #2a497e;" class="">Editar Cliente</h2>
-                </div>
-                <div class="logo-form">
-                    <img style="width: 50px; height: 50px;"src="{{ asset('assets/img/logo.png') }}">
-                </div>
-            </div>
+    <section  class="form p160 dash" id="contact-section" >
+        
+        <div class="container-fluid" style="margin-left: 40px; margin-top: 40px; padding-right: 40px;">
+
             <div style="margin-bottom: 50px;">
                 <div class="row">
+
+                    <div class="col-12">
+                        <div>
+                            <h2 style=" text-align: center; font-weight: bold; font-size: 20px;    margin-bottom: 10%;    color: #2a497e;" class="">Editar Cliente</h2>
+                        </div>
+                    </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
@@ -68,16 +67,15 @@
                     </div>
                 </div> 
             </div>
-           
-      
-                    <div style="margin-bottom: 50px;">
-                        <div style="display: flex;justify-content: center;"class="form-group row">
-                            <div style="text-align: center;" class="col-md-6">
             
-                                <button style="color: #fff;"class="btn-direction" type="button" @click="update()">Actualizar</button>
-                            </div>
-                        </div>
+            <div style="margin-bottom: 50px;">
+                <div style="display: flex;justify-content: center;"class="form-group row">
+                    <div style="text-align: center;" class="col-md-6">
+    
+                        <button style="color: #fff;"class="btn-direction" type="button" @click="update()">Actualizar</button>
                     </div>
+                </div>
+            </div>
                
            
         </div>

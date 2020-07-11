@@ -295,13 +295,3 @@
         flex-direction: column-reverse;   
     }
 }
-
-
-
-@media screen and (min-width: 1024px) and (max-width: 1366px) {
-
-    .pl50{
-        padding-left: 130px;
-    }
-
-}

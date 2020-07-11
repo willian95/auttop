@@ -58,7 +58,7 @@ class ServiceController extends Controller
 
             $skip = ($page - 1) * 20;
 
-            $services = Service::with("category")->orderBy('category_id')->skip($skip)->take(20)->get();
+            $services = Service::with("category")->has("category")->orderBy('category_id')->skip($skip)->take(20)->get();
             $servicesCount = Service::with("category")->count();
 
             return response()->json(["success" => true, "services" => $services, "servicesCount" => $servicesCount]);
@@ -75,7 +75,7 @@ class ServiceController extends Controller
 
         try{
 
-            $services = Service::has("category")->get();
+            $services = Service::has("category")->orderBy("name", "asc")->get();
             return response()->json(["success" => true, "services" => $services]);
 
         }catch(\Exception $e){

@@ -57,7 +57,7 @@ Route::get('/admin/order/diagnostic/{id}', "DiagnosticController@diagnostic");
 Route::post('/admin/order/getAdminDiagnostic', "OrderController@getAdminDiagnostics")->name('admin.order.diagnostic.get');
 Route::post('/admin/diagnostic/price/update', "DiagnosticController@update")->name('admin.diagnostic.price.update');
 
-Route::get('/admin/order/search/{rut}', 'OrderController@search');
+Route::get('/admin/order/search/{search}', 'OrderController@search');
 
 Route::get("/admin/client/index", "ClientController@index")->name('admin.client.index');
 Route::get("/admin/client/edit/{id}", "ClientController@edit")->name('admin.client.edit');

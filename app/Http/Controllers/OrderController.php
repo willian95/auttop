@@ -152,7 +152,7 @@ class OrderController extends Controller
 
     function show($client_link){
 
-        $order = Order::with('client', 'car', 'diagnostic')->where('client_link', $client_link)->first();
+        $order = Order::with('client', 'car', 'diagnostic', 'user')->where('client_link', $client_link)->first();
 
         if($order != null){
 
@@ -270,16 +270,25 @@ class OrderController extends Controller
 
     }
 
-    function search($rut){
+    function search($search){
 
-        $clientsArray = [];
+        /*$clientsArray = [];
         $clients =  Client::where('rut', 'like', '%'.$rut.'%')->get();
         
         foreach($clients as $client){
             array_push($clientsArray, $client->id);
-        }
+        }*/
 
-        $orders = Order::whereIn('client_id', $clientsArray)->with('status', 'car', 'user', 'client', 'payments')->orderBy("id", "desc")->get();
+        //$orders = Order::whereIn('client_id', $clientsArray)->with('status', 'car', 'user', 'client', 'payments')->orderBy("id", "desc")->get();
+        $orders = Order::whereHas("client", function ($query) use($search) {
+                
+            $query->where('rut', "like", "%".$search."%");
+        
+        })->orWhereHas('car', function( $query ) use ( $search ){
+
+            $query->where('patent', "like", "%".$search."%" );
+
+        })->with('status', 'car', 'user', 'client', 'payments')->orderBy("id", "desc")->get();
 
         return response()->json(["success" => true, "orders" => $orders]);
 

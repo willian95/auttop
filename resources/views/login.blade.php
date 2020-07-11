@@ -23,7 +23,7 @@
                             <div class="col-lg-8">
                                 <div class="form-group">
                                     
-                                <input class="form-control" id="email" type="email" placeholder="Email" v-model="email" autocomplete="">
+                                <input class="form-control" id="email" type="email" placeholder="Email" v-model="email" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-lg-8">

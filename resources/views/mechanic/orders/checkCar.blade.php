@@ -25,7 +25,7 @@
                             <tr v-for="service in category.services">
                                 <td v-cloak>@{{ service.name }}</td>
                                 <td v-for="index in 3" v-cloak>
-                                    <input class="service" type="radio" v-bind:name="'service-'+service.id" :value="index">
+                                    <input class="service" type="radio" v-bind:name="'service-'+service.id" :value="index" style="transform: scale(2)">
                                 </td>
                                 <td v-cloak>
                                     <input v-bind:class="'obser'+service.id" type="text" class="form-control">

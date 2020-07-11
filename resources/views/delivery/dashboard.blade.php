@@ -4,12 +4,12 @@
 
     @include('partials.admin.navbar')
 
-    <div class="form  dash" id="contact-section">
+    <div class="form  dash p160" id="contact-section">
         <div class="top_title">
             <h3 class="text-center">Ordenes</h3>
         </div>
-        <div class="container m140">
-            <div class="bg__tables m140 pl50" >
+        <div class="container-fluid m140">
+            <div class="bg__tables m140" >
         
                 <div class="row">
                     <div class="col-12">

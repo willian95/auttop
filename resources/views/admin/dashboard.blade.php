@@ -3,78 +3,70 @@
 @section("content")
 
     @include('partials.admin.navbar')
-    <section  class="form  dash" id="contact-section" >
+    <section  class="form dash pl60" id="contact-section" >
         <div class="top_title">
             <h3 class="">Panel de control</h3>
-    
-                <button class="btn btn-success mr-5" data-toggle="modal" data-target="#createODT">Crear Orden  <img src="{{ asset('assets/img/iconos/bx-list-plus.svg') }}" alt=""></button>
-           
+            <button class="btn btn-success mr-5" data-toggle="modal" data-target="#createODT">Crear Orden  <img src="{{ asset('assets/img/iconos/bx-list-plus.svg') }}" alt=""></button>
         </div>
 
-       <div class="container m140 pl50" >
-            <!-- <div class="row">
-                <div class="col-12">
-                    <p class="text-center">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#createODT">Crear</button>
-                    </p>
-                </div>  --->
+       <div class="container-fluid m140">
             
-          <div class="row resgistros">
-            <div class="col-4">
-                <p class="text-center">{{ App\Car::count() }} <img src="{{ asset('assets/img/iconos/bx-car.svg') }}" alt=""> </p>
-                <h5 class="text-center">Vehiculos registrados</h5>
-            
-            </div>
-            <div class="col-4">
-                <p class="text-center">{{ App\Client::count() }} <img src="{{ asset('assets/img/iconos/bx-user.svg') }}" alt=""></p>
-                <h5 class="text-center">Clientes registrados</h5>
+            <div class="row resgistros">
+                <div class="col-4">
+                    <p class="text-center">{{ App\Car::count() }} <img src="{{ asset('assets/img/iconos/bx-car.svg') }}" alt=""> </p>
+                    <h5 class="text-center">Vehiculos registrados</h5>
                 
-            </div>
-            <div class="col-4">
-                <p class="text-center">{{ App\Order::has('client')->has('car')->count() }} <img src="{{ asset('assets/img/iconos/bx-edit.svg') }}" alt=""></p>
-                <h5 class="text-center">Ordenes registradas</h5>
-                
-            </div>
-          </div>
-          <div class="bg__tables">
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="">Últimas ordenes</h3>
+                </div>
+                <div class="col-4">
+                    <p class="text-center">{{ App\Client::count() }} <img src="{{ asset('assets/img/iconos/bx-user.svg') }}" alt=""></p>
+                    <h5 class="text-center">Clientes registrados</h5>
+                    
+                </div>
+                <div class="col-4">
+                    <p class="text-center">{{ App\Order::has('client')->has('car')->count() }} <img src="{{ asset('assets/img/iconos/bx-edit.svg') }}" alt=""></p>
+                    <h5 class="text-center">Ordenes registradas</h5>
+                    
                 </div>
             </div>
-            <div class="row over">
-                <div class="col-12">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Cliente</th>
-                                <th scope="col">rut</th>
-                                <th scope="col">Vehiculo</th>
-                                <th scope="col">Patente</th>
-                                <th scope="col">Fecha de recepción</th>
-                                <th scope="col">Status</th>
+            <div class="bg__tables">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="">Últimas ordenes</h3>
+                    </div>
+                </div>
+                <div class="row over">
+                    <div class="col-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">rut</th>
+                                    <th scope="col">Vehiculo</th>
+                                    <th scope="col">Patente</th>
+                                    <th scope="col">Fecha de recepción</th>
+                                    <th scope="col">Status</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            <tr v-for="(order, index) in orders" v-cloak v-if="order.client && order.car">
-                                <th v-cloak>@{{ order.id }}</th>
-                                <td v-cloak><span v-if="order.client">@{{ order.client.name }}</span></td>
-                                <td v-cloak><span v-if="order.client">@{{ order.client.rut }}</span></td>
-                                <td v-cloak><span v-if="order.car">@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</span></td>
-                                <td v-cloak><span v-if="order.car">@{{ order.car.patent.toUpperCase() }}</span></td>
-                                <td v-cloak>@{{ order.created_at.substring(0, 10) }}</td>
-                                <td v-cloak>@{{ order.status.text }}</td>
-                            
-                            </tr>
-                            
-                        </tbody>
-                    </table>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr v-for="(order, index) in orders" v-cloak v-if="order.client && order.car">
+                                    <th v-cloak>@{{ order.id }}</th>
+                                    <td v-cloak><span v-if="order.client">@{{ order.client.name }}</span></td>
+                                    <td v-cloak><span v-if="order.client">@{{ order.client.rut }}</span></td>
+                                    <td v-cloak><span v-if="order.car">@{{ order.car.brand }} @{{ order.car.model }} @{{ order.car.year }}</span></td>
+                                    <td v-cloak><span v-if="order.car">@{{ order.car.patent.toUpperCase() }}</span></td>
+                                    <td v-cloak>@{{ order.created_at.substring(0, 10) }}</td>
+                                    <td v-cloak>@{{ order.status.text }}</td>
+                                
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-          </div>
         </div>
     
     </section>

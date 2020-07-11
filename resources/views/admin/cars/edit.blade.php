@@ -3,27 +3,26 @@
 @section('content')
 
 @include('partials.admin.navbar')
-<section  class="form" id="contact-section" >
-        <div class="container">
+    <section  class="form" id="contact-section" >
+        <div class="container-fluid">
             <div class="mask">
         
             	<form action="">
                     <div class="title-form">
                         <div>
-                              <h2 style=" text-align: center; font-weight: bold; font-size: 20px;    margin-bottom: 10%;    color: #2a497e;" class="">Editar Cliente</h2>
-                           </div>
-                           <div class="logo-form">
-                                <img style="width: 50px; height: 50px;"src="{{ asset('assets/img/logo.png') }}">
-                           </div>
+                            <h2 style=" text-align: center; font-weight: bold; font-size: 20px;    margin-bottom: 10%;    color: #2a497e;" class="">Editar Vehiculo</h2>
+                        </div>
                     </div>
                     <div style="margin-bottom: 50px;">
                         <div class="form-group row">
     
-                            <div class="col-md-4 mb-4">
+                            <div class="col-md-6 mb-4">
+                                <label for="">Patente</label>
                                 <input type="text" class="form-control" placeholder="Patente" v-model="patent" readonly>
                             </div>
     
                             <div class="col-md-6">
+                                <label for="">Marca</label>
                                 <input type="text" class="form-control" placeholder="Marca"  v-model="brand">
                             </div>
                         </div>
@@ -31,11 +30,13 @@
     
                         <div class="form-group row">
                             <div class="col-md-6 mb-4">
+                                <label for="">Año</label>
                                 <input type="text" class="form-control" placeholder="Año"  v-model="year" id="year" @click="setNumber()" @keypress="isNumber($event)">
                       
                             </div>
               
                             <div class="col-md-6">
+                                <label for="">Modelo</label>
                                 <input type="text" class="form-control" placeholder="Modelo"  v-model="model">
                       
                             </div>
@@ -43,6 +44,7 @@
             
                         <div class="form-group row">
                             <div class="col-md-6 mb-4">
+                                <label for="">Color</label>
                                 <input type="text" class="form-control" placeholder="Color"  v-model="color">
                       
                             </div>

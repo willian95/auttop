@@ -3,64 +3,54 @@
 @section('content')
 
     @include('partials.admin.navbar')
-    <div class="container form dash" id="contact-section">
+    <section class="p160 form dash" id="contact-section">
         <div class="top_title">
             <h3 class="text-center">Servicios</h3>
             <button class="btn btn-success mr-5" data-toggle="modal" data-target="#createService" @click="create()">Crear <img src="{{ asset('assets/img/iconos/bx-list-plus.svg') }}" alt=""></button>
-
-           
-
-              
         </div>
-     <!--   <div class="row">
-            <div class="col-12">
-                <h3 class="text-center">Servicios</h3>
+
+        <div class="container-fluid">
+            <div class="bg__tables mt-15">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Servicio</th>
+                                    <th scope="col">Categoría</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(service, index) in services">
+                                    <th v-cloak>@{{ index + 1 }}</th>
+                                    <td v-cloak>@{{ service.name }}</td>
+                                    <td v-cloak>@{{ service.category.name }}</td>
+                                    <td v-cloak>
+                                        <button class="btn btn-success" data-toggle="modal" data-target="#createService" @click="edit(service)">editar</button>
+                                        <button class="btn btn-danger" @click="erase(service.id)">eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" v-cloak>
+                    <div class="col-12">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item" v-for="index in pages">
+                                    <a class="page-link" href="#" :key="index" @click="fetch(index)" >@{{ index }}</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
-        </div>--->
-      <div class="bg__tables mt-15 pl50">
-        <div class="row">
-            <!--  <div class="col-12">
-                  <p class="text-center">
-                      <button class="btn btn-success" data-toggle="modal" data-target="#createService" @click="create()">Crear</button>
-                  </p>
-              </div>--->
-              <div class="col-12">
-                  <table class="table">
-                      <thead>
-                          <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Servicio</th>
-                              <th scope="col">Categoría</th>
-                              <th scope="col">Acciones</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr v-for="(service, index) in services">
-                              <th v-cloak>@{{ index + 1 }}</th>
-                              <td v-cloak>@{{ service.name }}</td>
-                              <td v-cloak>@{{ service.category.name }}</td>
-                              <td v-cloak>
-                                  <button class="btn btn-success" data-toggle="modal" data-target="#createService" @click="edit(service)">editar</button>
-                                  <button class="btn btn-danger" @click="erase(service.id)">eliminar</button>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-          <div class="row" v-cloak>
-              <div class="col-12">
-                  <nav aria-label="Page navigation example">
-                      <ul class="pagination">
-                          <li class="page-item" v-for="index in pages">
-                              <a class="page-link" href="#" :key="index" @click="fetch(index)" >@{{ index }}</a>
-                          </li>
-                      </ul>
-                  </nav>
-              </div>
-          </div>
-      </div>
-    </div>
+        </div>
+
+    </section>
 
     <!-- modal -->
 
