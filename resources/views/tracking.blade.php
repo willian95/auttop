@@ -162,90 +162,90 @@
 										<div class="card-body">
 										<div class="item-serv">
 											<div class="row">
-											
-												<div class="col-12">
-													@if($order->status_id == 3)
-														<table class="table">
-															<thead>
-																<tr>
-																	<th>servicio</th>
-																	<th>precio</th>
-																</tr>
-															</thead>
-															<tbody>
-															
-																<tr v-for="(service, index) in services" v-if="service.type == 'aprobada'">
+												<div class="table-responsive">
+													<div class="col-12">
+														@if($order->status_id == 3)
+															<table class="table">
+																<thead>
+																	<tr>
+																		<th>servicio</th>
+																		<th>precio</th>
+																	</tr>
+																</thead>
+																<tbody>
 																
-																	<td v-cloak>@{{ service.service.name }}</td>
-																	<td v-cloak>@{{ service.price }}</td>
-																</tr>
-															
-															</tbody>
-														</table>
-							
-													@elseif($order->status_id == 5)
-														<table class="table">
-															<thead>
-																<tr>
-																
-																	<th>servicio</th>
-																	<th>precio</th>
-																	<th>Tipo</th>
-																	<th>Observaciones</th>
-																	<th>Acción</th>
+																	<tr v-for="(service, index) in services" v-if="service.type == 'aprobada'">
 																	
-																</tr>
-															</thead>
-															<tbody>
+																		<td v-cloak>@{{ service.service.name }}</td>
+																		<td v-cloak>@{{ service.price }}</td>
+																	</tr>
 																
-																<tr v-for="(service, index) in services">
-																
-																	<td v-cloak>@{{ service.service.name }}</td>
-																	<td v-cloak>@{{ service.price }}</td>
-																	<td v-cloak>@{{ service.type }}</td>
-																	<td v-cloak>@{{ service.observations }}</td>
-																	<td v-cloak>
-																		<input v-if="service.type != 'aprobada'" type="checkbox" id="checkbox" @click="toggleCheck(service.id, service.price)">
-																	</td>
-																</tr>
+																</tbody>
+															</table>
 								
-															</tbody>
-														</table>
-														<div v-cloak>
-															Total: @{{ firstTotal + total }}
-														</div>
-							
-														<p><button class="btn btn-success" @click="approvedServices()">Seleccionar</button></p>
-													@elseif($order->status_id >= 6)
-														<table class="table">
-															<thead>
-																<tr>
-																
-																	<th>servicio</th>
-																	<th>precio</th>
-																	<th>Tipo</th>
-																	<th>Observaciones</th>
-																	
-																</tr>
-															</thead>
-															<tbody>
-								
-																@foreach(App\ApprovedDiagnostic::with('diagnostic', 'diagnostic.service')->where('order_id', $order->id)->get() as $approved)
+														@elseif($order->status_id == 5)
+															<table class="table">
+																<thead>
 																	<tr>
 																	
-																		<td>{{ $approved->diagnostic->service->name }}</td>
-																		<td>{{ $approved->diagnostic->price }}</td>
-																		<td>{{ $approved->diagnostic->type }}</td>
-																		<td>{{ $approved->diagnostic->observations }}</td>
-																		<td>
+																		<th>servicio</th>
+																		<th>precio</th>
+																		<th>Tipo</th>
+																		<th>Observaciones</th>
+																		<th>Acción</th>
+																		
 																	</tr>
-																@endforeach
+																</thead>
+																<tbody>
+																	
+																	<tr v-for="(service, index) in services">
+																	
+																		<td v-cloak>@{{ service.service.name }}</td>
+																		<td v-cloak>@{{ service.price }}</td>
+																		<td v-cloak>@{{ service.type }}</td>
+																		<td v-cloak>@{{ service.observations }}</td>
+																		<td v-cloak>
+																			<input v-if="service.type != 'aprobada'" type="checkbox" id="checkbox" @click="toggleCheck(service.id, service.price)">
+																		</td>
+																	</tr>
+									
+																</tbody>
+															</table>
+															<div v-cloak>
+																Total: @{{ firstTotal + total }}
+															</div>
 								
-															</tbody>
-														</table>
-													@endif
-												</div>  
-												
+															<p><button class="btn btn-success" @click="approvedServices()">Seleccionar</button></p>
+														@elseif($order->status_id >= 6)
+															<table class="table">
+																<thead>
+																	<tr>
+																	
+																		<th>servicio</th>
+																		<th>precio</th>
+																		<th>Tipo</th>
+																		<th>Observaciones</th>
+																		
+																	</tr>
+																</thead>
+																<tbody>
+									
+																	@foreach(App\ApprovedDiagnostic::with('diagnostic', 'diagnostic.service')->where('order_id', $order->id)->get() as $approved)
+																		<tr>
+																		
+																			<td>{{ $approved->diagnostic->service->name }}</td>
+																			<td>{{ $approved->diagnostic->price }}</td>
+																			<td>{{ $approved->diagnostic->type }}</td>
+																			<td>{{ $approved->diagnostic->observations }}</td>
+																			<td>
+																		</tr>
+																	@endforeach
+									
+																</tbody>
+															</table>
+														@endif
+													</div>  
+												</div>
 											</div>
 								
 										</div>
