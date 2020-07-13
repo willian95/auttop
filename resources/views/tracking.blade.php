@@ -6,7 +6,7 @@
 
 		<div class="row">
 
-			<div class="col-md-7 order-lg-1 order-md-2 order-sm-2 order-2">
+			<div class="col-md-6 order-lg-1 order-md-2 order-sm-2 order-2">
 
 				<div class="form dash" id="contact-section">
 					<div class="row">
@@ -121,7 +121,7 @@
 			</div>
 
 			
-			<div class="col-md-5 order-lg-2 order-md-1 order-sm-1 order-1">
+			<div class="col-md-6 order-lg-2 order-md-1 order-sm-1 order-1">
 				<!------seguimient-->
 				<form>
 
@@ -137,7 +137,7 @@
 							@if($order->status_id >= 2)
 								<div class="card">
 									<h5 class="mb-0">
-										<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" type="button">
 											<div class="card-header" id="headingOne" style="background: #fff;">
 										
 												Auto camino al taller
@@ -150,7 +150,7 @@
 							@if($order->status_id >= 3)
 								<div class="card">
 									<h5 class="mb-0">
-										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" type="button">
 											<div  class="card-header" id="headingTwo">
 								
 												Auto en proceso
@@ -162,90 +162,90 @@
 										<div class="card-body">
 										<div class="item-serv">
 											<div class="row">
-												<div>
-													<div class="col-12">
-														@if($order->status_id == 3)
-															<table class="table">
-																<thead>
-																	<tr>
-																		<th>servicio</th>
-																		<th>precio</th>
-																	</tr>
-																</thead>
-																<tbody>
+											
+												<div class="col-12">
+													@if($order->status_id == 3)
+														<table class="table">
+															<thead>
+																<tr>
+																	<th>servicio</th>
+																	<th>precio</th>
+																</tr>
+															</thead>
+															<tbody>
+															
+																<tr v-for="(service, index) in services" v-if="service.type == 'aprobada'">
 																
-																	<tr v-for="(service, index) in services" v-if="service.type == 'aprobada'">
-																	
-																		<td v-cloak>@{{ service.service.name }}</td>
-																		<td v-cloak>@{{ service.price }}</td>
-																	</tr>
+																	<td v-cloak>@{{ service.service.name }}</td>
+																	<td v-cloak>@{{ service.price }}</td>
+																</tr>
+															
+															</tbody>
+														</table>
+							
+													@elseif($order->status_id == 5)
+														<table class="table">
+															<thead>
+																<tr>
 																
-																</tbody>
-															</table>
+																	<th>servicio</th>
+																	<th>precio</th>
+																	<th>Tipo</th>
+																	<th>Observaciones</th>
+																	<th>Acción</th>
+																	
+																</tr>
+															</thead>
+															<tbody>
+																
+																<tr v-for="(service, index) in services">
+																
+																	<td v-cloak>@{{ service.service.name }}</td>
+																	<td v-cloak>@{{ service.price }}</td>
+																	<td v-cloak>@{{ service.type }}</td>
+																	<td v-cloak>@{{ service.observations }}</td>
+																	<td v-cloak>
+																		<input v-if="service.type != 'aprobada'" type="checkbox" id="checkbox" @click="toggleCheck(service.id, service.price)">
+																	</td>
+																</tr>
 								
-														@elseif($order->status_id == 5)
-															<table class="table">
-																<thead>
+															</tbody>
+														</table>
+														<div v-cloak>
+															Total: @{{ firstTotal + total }}
+														</div>
+							
+														<p><button class="btn btn-success" @click="approvedServices()">Seleccionar</button></p>
+													@elseif($order->status_id >= 6)
+														<table class="table">
+															<thead>
+																<tr>
+																
+																	<th>servicio</th>
+																	<th>precio</th>
+																	<th>Tipo</th>
+																	<th>Observaciones</th>
+																	
+																</tr>
+															</thead>
+															<tbody>
+								
+																@foreach(App\ApprovedDiagnostic::with('diagnostic', 'diagnostic.service')->where('order_id', $order->id)->get() as $approved)
 																	<tr>
 																	
-																		<th>servicio</th>
-																		<th>precio</th>
-																		<th>Tipo</th>
-																		<th>Observaciones</th>
-																		<th>Acción</th>
-																		
+																		<td>{{ $approved->diagnostic->service->name }}</td>
+																		<td>{{ $approved->diagnostic->price }}</td>
+																		<td>{{ $approved->diagnostic->type }}</td>
+																		<td>{{ $approved->diagnostic->observations }}</td>
+																		<td>
 																	</tr>
-																</thead>
-																<tbody>
-																	
-																	<tr v-for="(service, index) in services">
-																	
-																		<td v-cloak>@{{ service.service.name }}</td>
-																		<td v-cloak>@{{ service.price }}</td>
-																		<td v-cloak>@{{ service.type }}</td>
-																		<td v-cloak>@{{ service.observations }}</td>
-																		<td v-cloak>
-																			<input v-if="service.type != 'aprobada'" type="checkbox" id="checkbox" @click="toggleCheck(service.id, service.price)">
-																		</td>
-																	</tr>
-									
-																</tbody>
-															</table>
-															<div v-cloak>
-																Total: @{{ firstTotal + total }}
-															</div>
+																@endforeach
 								
-															<p><button class="btn btn-success" @click="approvedServices()">Seleccionar</button></p>
-														@elseif($order->status_id >= 6)
-															<table class="table">
-																<thead>
-																	<tr>
-																	
-																		<th>servicio</th>
-																		<th>precio</th>
-																		<th>Tipo</th>
-																		<th>Observaciones</th>
-																		
-																	</tr>
-																</thead>
-																<tbody>
-									
-																	@foreach(App\ApprovedDiagnostic::with('diagnostic', 'diagnostic.service')->where('order_id', $order->id)->get() as $approved)
-																		<tr>
-																		
-																			<td>{{ $approved->diagnostic->service->name }}</td>
-																			<td>{{ $approved->diagnostic->price }}</td>
-																			<td>{{ $approved->diagnostic->type }}</td>
-																			<td>{{ $approved->diagnostic->observations }}</td>
-																			<td>
-																		</tr>
-																	@endforeach
-									
-																</tbody>
-															</table>
-														@endif
-													</div>  
-												</div>
+															</tbody>
+														</table>
+													@endif
+												</div>  
+												
 											</div>
 								
 										</div>
@@ -258,7 +258,7 @@
 								<div class="card">
 									<h5 class="mb-0">
 										
-										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" type="button">
 											<div  class="card-header" id="headingThree">
 									
 												Proceso de Pago
@@ -314,7 +314,7 @@
 							@if($order->status_id >= 7)
 								<div class="card">
 									<h5 class="mb-0">
-										<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+										<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" type="button">
 											<div  class="card-header" id="headingOne">
 										
 												Auto en proceso de lavado
