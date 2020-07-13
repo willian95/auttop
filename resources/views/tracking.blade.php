@@ -302,7 +302,7 @@
 													</table>
 													<p>Total: {{ $total }}</p>
 													@if($order->status_id < 7)
-														<button class="btn btn-success"  @click="cartStore()">Pagar</button>
+														<button class="btn btn-success" type="button"  @click="cartStore()">Pagar</button>
 													@endif
 												</div>
 											</div>
