@@ -2,7 +2,7 @@
 
 @section('content')
 	@include('partials.user.navbar')
-	<div class="container" style="padding-top: 60px;">
+	<div class="container-fluid" style="padding-top: 60px;">
 
 		<div class="row">
 
