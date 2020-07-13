@@ -41,7 +41,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Cliente</th>
-                                    <th scope="col">rut</th>
+                                    <th scope="col" style="min-width: 115px;">rut</th>
                                     <th scope="col">Vehiculo</th>
                                     <th scope="col">Patente</th>
                                     <th scope="col">Fecha de recepción</th>
