@@ -121,7 +121,7 @@ class OrderController extends Controller
             }
 
             else{
-                $orders = Order::with('status', 'car', 'user', 'client', 'payments', 'mechanic')->skip($skip)->take(15)->orderBy('id', 'desc')->get();
+                $orders = Order::with('status', 'car', 'user', 'client', 'payments', 'mechanic')->has('client', 'user')->skip($skip)->take(15)->orderBy('id', 'desc')->get();
                 $ordersCount = Order::with('status', 'car', 'user', 'client', 'payments', 'mechanic')->count();
             }
 
