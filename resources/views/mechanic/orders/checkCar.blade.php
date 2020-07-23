@@ -58,7 +58,8 @@
                 return{
                     categories:[],
                     orderId:'{{ $orderId }}',
-                    checkedServices:[]
+                    checkedServices:[],
+                    loading:false
                 }
             },
             methods:{
@@ -76,27 +77,36 @@
 
                 },
                 store(){
-                    this.checkedServices = []
-                    var element = $('.service').map((_,el) => el).get()
-                    element.forEach((data, index) => {
-                        if(data.checked == true){
-                            let ob = $(".obser"+data.name.substring("8", data.name.length)).val()
-                            this.checkedServices.push({"serviceId": data.name.substring("8", data.name.length), "value": data.value, "obser": ob})
-                        }
-                       
-                    })
+                    
+                    if(this.loading == false){
 
-                    axios.post("{{ url('/mechanic/diagnositc/store') }}", {"orderId": this.orderId, "checkedServices": this.checkedServices})
-                    .then(res => {
+                        this.loading = true
+
+                        this.checkedServices = []
+                        var element = $('.service').map((_,el) => el).get()
+                        element.forEach((data, index) => {
+                            if(data.checked == true){
+                                let ob = $(".obser"+data.name.substring("8", data.name.length)).val()
+                                this.checkedServices.push({"serviceId": data.name.substring("8", data.name.length), "value": data.value, "obser": ob})
+                            }
                         
-                        if(res.data.success == true){
-                            alert(res.data.msg)
-                            window.location.href="{{ route('mechanic.index') }}"
-                        }else{
-                            alert(res.data.msg)
-                        }
+                        })
 
-                    })
+                        axios.post("{{ url('/mechanic/diagnositc/store') }}", {"orderId": this.orderId, "checkedServices": this.checkedServices})
+                        .then(res => {
+                            
+                            this.loading = false
+
+                            if(res.data.success == true){
+                                alert(res.data.msg)
+                                window.location.href="{{ route('mechanic.index') }}"
+                            }else{
+                                alert(res.data.msg)
+                            }
+
+                        })
+
+                    }
                     
                 }
 

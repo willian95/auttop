@@ -126,7 +126,8 @@
                     total:0,
                     order_id: '{!! $order->id !!}',
                     paymentMethod:'efectivo',
-                    transferID:""
+                    transferID:"",
+                    loading:false
                 }
             },
             methods:{
@@ -152,39 +153,47 @@
                 },
                 checkout(){
 
-                    let error = false
+                    if(this.loading == false){
 
-                    if(this.paymentMethod == 'transferencia bancaria'){
+                        let error = false
+                        this.loading = true
 
-                        if(this.transferID == ""){
-                            alert('Debe colocar el ID de la transacción')
-                            error = true
-                        }
-
-                    }
-
-                    if(!error){
-
-                        axios.post("{{ url('/order/payment/store') }}", {transferId: this.transferID, paymentMethod: this.paymentMethod, order_id: this.order_id})
-                        .then(res => {
-
-                            if(res.data.success == true){
-
-                                alert(res.data.msg)
-                                window.location.href="{{ url('/order/number/'.$order->client_link) }}"
-
-                            }else{
-
-                                alert(res.data.msg)
-
+                        if(this.paymentMethod == 'transferencia bancaria'){
+                            this.loading = false
+                            if(this.transferID == ""){
+                                alert('Debe colocar el ID de la transacción')
+                                error = true
                             }
 
-                        })
-                        .catch(err => {
-                            $.each(err.response.data.errors, function(key, value){
-                                alert(value)
-                            });
-                        })
+                        }
+
+                        if(!error){
+
+                            axios.post("{{ url('/order/payment/store') }}", {transferId: this.transferID, paymentMethod: this.paymentMethod, order_id: this.order_id})
+                            .then(res => {
+
+                                this.loading = false
+
+                                if(res.data.success == true){
+
+                                    alert(res.data.msg)
+                                    window.location.href="{{ url('/order/number/'.$order->client_link) }}"
+
+                                }else{
+
+                                    alert(res.data.msg)
+
+                                }
+
+                            })
+                            .catch(err => {
+                                this.loading = false
+                                $.each(err.response.data.errors, function(key, value){
+                                    alert(value)
+                                });
+                            })
+
+                        }
 
                     }
 

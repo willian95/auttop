@@ -21,6 +21,7 @@
                         <tr>
                             <th>Servicio</th>
                             <th>Tipo</th>
+                            <th>Observación</th>
                             <th>Precio</th>
                             <th></th>
                         </tr>
@@ -31,12 +32,15 @@
                             <td v-cloak>
                                 @{{ row.type }}
                             </td>
-                            <td v-if="row.type == 'aprobada'" v-cloak>
-                                @{{ row.price }}
+                            <td>
+                                @{{ row.observations }}
                             </td>
-                            <td v-else v-cloak>
-                                <input type="text" class="form-control price" :id="'price'+row.id" @keypress="isNumber($event)">
+                            <td>
+                                <span v-if="row.type == 'aprobada'" v-cloak>
+                                @{{ row.price }}</span>
+                                <input v-else type="text" class="form-control price" :id="'price'+row.id" @keypress="isNumber($event)">
                             </td>
+                            
                         </tr>
                     </tbody>
                 </table>
@@ -48,7 +52,7 @@
         
                 <div class="col-md-6">
                     <label for="">Patente</label>
-                    <input type="text" class="form-control" placeholder="Patente" value="{{ $order->car->patent }}" name="patent" id="patent" readonly>
+                    <input style="text-transform: uppercase;" type="text" class="form-control" placeholder="Patente" value="{{ $order->car->patent }}" name="patent" id="patent" readonly>
                 </div>
 
                 <div class="col-md-6 mb-4">
@@ -108,39 +112,49 @@
                 return{
                     approved:[],
                     prices:[],
-                    orderId:'{{ $order->id }}'
+                    orderId:'{{ $order->id }}',
+                    loading:false
                 }
             },
             methods:{
 
                 
                 update(){
-                    this.prices= []
-                    //this.approvedElements()
-                    var element = $('.price').map((_,el) => el).get()
-                    //console.log("test-element", element)
-                    element.forEach((data, index) => {
+                    
+                    if(this.loading == false){
 
-                        this.prices.push({"id": data.id.substring("5", data.id.length), "price": data.value})
-                       
-                    })
+                        this.loading = true
 
-                    axios.post("{{ route('admin.diagnostic.price.update') }}", {prices: this.prices,  orderId: this.orderId})
-                    .then(res => {
+                        this.prices= []
+                        //this.approvedElements()
+                        var element = $('.price').map((_,el) => el).get()
+                        //console.log("test-element", element)
+                        element.forEach((data, index) => {
 
-                        if(res.data.success == true){
-                            alert(res.data.msg)
-                            window.location.href="{{ route('admin.order.index') }}"
-                        }else{
-                            alert(res.data.msg)
-                        }
+                            this.prices.push({"id": data.id.substring("5", data.id.length), "price": data.value})
+                        
+                        })
 
-                    })
-                    .catch(err =>{
-                        $.each(err.response.data.errors, function(key, value){
-                            alert(value)
-                        });
-                    })
+                        axios.post("{{ route('admin.diagnostic.price.update') }}", {prices: this.prices,  orderId: this.orderId})
+                        .then(res => {
+
+                            this.loading = false
+                            if(res.data.success == true){
+                                alert(res.data.msg)
+                                window.location.href="{{ route('admin.order.index') }}"
+                            }else{
+                                alert(res.data.msg)
+                            }
+
+                        })
+                        .catch(err =>{
+                            this.loading = false
+                            $.each(err.response.data.errors, function(key, value){
+                                alert(value)
+                            });
+                        })
+
+                    }
 
                 },
                 isNumber: function(evt) {

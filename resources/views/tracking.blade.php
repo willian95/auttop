@@ -205,7 +205,7 @@
 																		<td v-cloak>@{{ service.type }}</td>
 																		<td v-cloak>@{{ service.observations }}</td>
 																		<td v-cloak>
-																			<input v-if="service.type != 'aprobada'" type="checkbox" id="checkbox" @click="toggleCheck(service.id, service.price)">
+																			<input style="transform: scale(2);" v-if="service.type != 'aprobada'" type="checkbox" id="checkbox" @click="toggleCheck(service.id, service.price)">
 																		</td>
 																	</tr>
 									
@@ -215,7 +215,7 @@
 																Total: @{{ firstTotal + total }}
 															</div>
 								
-															<p><button class="btn btn-success" @click="approvedServices()">Seleccionar</button></p>
+															<p><button class="btn btn-success" type="button" @click="approvedServices()">Seleccionar</button></p>
 														@elseif($order->status_id >= 6)
 															<table class="table">
 																<thead>
@@ -324,8 +324,37 @@
 								
 								</div>
 							@endif
+							@if($order->status_id >= 8)
+								<div class="card">
+									<h5 class="mb-0">
+										<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" type="button">
+											<div  class="card-header" id="headingOne">
+										
+												Auto camino a tu lugar
+											</div>
+										</button>
+									</h5>
+								
+								</div>
+							@endif
+							@if($order->status_id >= 9)
+								<div class="card">
+									<h5 class="mb-0">
+										<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" type="button">
+											<div  class="card-header" id="headingOne">
+										
+												Proceso terminado
+											</div>
+										</button>
+									</h5>
+								
+								</div>
+							@endif
 
 							<h4><strong>Delivery:</strong> {{ $order->user->name }}</h4>
+							@if($order->mechanic)
+								<h4><strong>Mecánico:</strong> {{ $order->mechanic->name }}</h4>
+							@endif
 
 						</div>
 
@@ -352,63 +381,77 @@
 					orderId:'{{ $order->id }}',
 					firstTotal:0,
 					total:0,
-					selectedServices:[]
+					selectedServices:[],
+					loading:false
 				}
 			},
 			methods:{
 				
 				approvedServices(){
+					
+					if(this.loading == false){
 
-				axios.post("{{ url('/order/diagnostics/approved') }}", {approveDiagnostics: this.selectedServices, orderId: this.orderId})
-				.then(res => {
+						this.loading = true
 
-					if(res.data.success == true){
-					alert(res.data.msg)
-					window.location.reload()
-					}else{
-					alert(res.data.msg)
+						axios.post("{{ url('/order/diagnostics/approved') }}", {approveDiagnostics: this.selectedServices, orderId: this.orderId})
+						.then(res => {
+							this.loading = false
+							if(res.data.success == true){
+								alert(res.data.msg)
+								window.location.reload()
+							}else{
+								alert(res.data.msg)
+							}
+
+						})
+
 					}
-
-				})
 
 				},
 				cartStore(){
 
-				axios.post("{{ url('/cart/store') }}", {orderId: this.orderId})
-				.then(res => {
+					if(this.loading == false){
 
-					if(res.data.success == true){
-					
-					window.location.href="{{ url('/checkout') }}"+"/"+res.data.cartId
-					
-					}else{
-					alert(res.data.msg)
+						this.loading = true
+
+						axios.post("{{ url('/cart/store') }}", {orderId: this.orderId})
+						.then(res => {
+
+							this.loading = false
+							if(res.data.success == true){
+							
+								window.location.href="{{ url('/checkout') }}"+"/"+res.data.cartId
+							
+							}else{
+								alert(res.data.msg)
+							}
+
+						})
+
 					}
-
-				})
 
 				},
 				getServices(){
-				axios.get("{{ url('/mechanic/order/services/') }}"+"/"+this.orderId).then(res => {
+					axios.get("{{ url('/mechanic/order/services/') }}"+"/"+this.orderId).then(res => {
 
-					if(res.data.success == true){
+						if(res.data.success == true){
 
-					this.services = res.data.services
-					this.services.forEach((data, index) => {
-						
-						if(data.type == 'aprobada')
-						this.firstTotal = this.firstTotal + data.price
+						this.services = res.data.services
+						this.services.forEach((data, index) => {
+							
+							if(data.type == 'aprobada')
+							this.firstTotal = this.firstTotal + data.price
+
+						})
+
+
+						}else{
+
+							alert(res.data.msg)
+
+						}
 
 					})
-
-
-					}else{
-
-						alert(res.data.msg)
-
-					}
-
-				})
 				},
 				toggleCheck(id, price){
 				this.total = 0;

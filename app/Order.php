@@ -23,6 +23,10 @@ class Order extends Model
         return $this->belongsTo("App\User");
     }
 
+    public function mechanic(){
+        return $this->belongsTo("App\User", "mechanic_id");
+    }
+
     public function diagnostic(){
         return $this->hasMany("App\Diagnostic");
     }

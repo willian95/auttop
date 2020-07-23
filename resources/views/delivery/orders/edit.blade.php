@@ -207,7 +207,8 @@
                     kilometers:"",
                     gas_amount:"",
                     comments:"",
-                    services:""
+                    services:"",
+                    loading:false
                 }
             },
             methods:{
@@ -288,23 +289,31 @@
                 },
                 revision(){
 
-                    axios.post("{{ route('delivery.order.revision') }}", {rut: this.rut, name: this.name, telephone: this.telephone, address: this.address, location: this.location, email: this.email, patent: this.patent, brand: this.brand, year: this.year, model: this.model, color: this.color, kilometers: this.kilometers, gas_amount: this.gas_amount, comments: this.comments, services: this.services, orderId: this.orderId}).then(res => {
+                    if(this.loading == false){
 
-                        if(res.data.success == true){
+                        this.loading = true
 
-                            alert(res.data.msg)
-                            window.location.href = "{{ route('delivery.index') }}"
+                        axios.post("{{ route('delivery.order.revision') }}", {rut: this.rut, name: this.name, telephone: this.telephone, address: this.address, location: this.location, email: this.email, patent: this.patent, brand: this.brand, year: this.year, model: this.model, color: this.color, kilometers: this.kilometers, gas_amount: this.gas_amount, comments: this.comments, services: this.services, orderId: this.orderId}).then(res => {
 
-                        }else{
-                            alert(res.data.msg)
-                        }
+                            if(res.data.success == true){
 
-                    })
-                    .catch(err => {
-                        $.each(err.response.data.errors, function(key, value){
-                            alert(value)
-                        });
-                    })
+                                alert(res.data.msg)
+                                window.location.href = "{{ route('delivery.index') }}"
+
+                            }else{
+                                alert(res.data.msg)
+                            }
+                            this.loading = false
+
+                        })
+                        .catch(err => {
+                            this.loading = false
+                            $.each(err.response.data.errors, function(key, value){
+                                alert(value)
+                            });
+                        })
+
+                    }
 
                 },
                 getServices(){

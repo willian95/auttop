@@ -54,6 +54,7 @@ class DiagnosticController extends Controller
 
                 $order = Order::find($request->orderId);
                 $order->status_id = 4;
+                $order->mechanic_id = \Auth::user()->id;
                 $order->update();
 
                 $this->storeHistory($order->id, $order->status_id);

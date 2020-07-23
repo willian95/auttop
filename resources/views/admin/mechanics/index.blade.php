@@ -108,7 +108,8 @@
                     mechanicId:"",
                     action:"create",
                     mechanics:[],
-                    pages:0
+                    pages:0,
+                    loading:false
                 }
             },
             methods:{
@@ -121,55 +122,68 @@
                 },
                 store(){
 
-                    axios.post("{{ route('admin.mechanic.store') }}", {name: this.name, email: this.email, password: this.password})
-                    .then(res => {
+                    if(this.loading == false){
+                        this.loading = true
+                        axios.post("{{ route('admin.mechanic.store') }}", {name: this.name, email: this.email, password: this.password})
+                        .then(res => {
 
-                        if(res.data.success == true){
+                            this.loading = false
+                            if(res.data.success == true){
 
-                            alert(res.data.msg)
-                            this.name = ""
-                            this.email  = ""
-                            this.password = ""
-                            this.fetch()
-                        }else{
+                                alert(res.data.msg)
+                                this.name = ""
+                                this.email  = ""
+                                this.password = ""
+                                this.fetch()
+                            }else{
 
-                            alert(res.data.msg)
+                                alert(res.data.msg)
 
-                        }
+                            }
 
-                    })
-                    .catch(err => {
-                        $.each(err.response.data.errors, function(key, value){
-                            alert(value)
-                        });
-                    })
+                        })
+                        .catch(err => {
+                            this.loading = false
+                            $.each(err.response.data.errors, function(key, value){
+                                alert(value)
+                            });
+                        })
+
+                    }
 
                 },
                 update(){
 
-                    axios.post("{{ route('admin.mechanic.update') }}", {id: this.mechanicId, name: this.name, email: this.email, password: this.password})
-                    .then(res => {
+                    if(this.loading == false){
 
-                        if(res.data.success == true){
+                        this.loading = true
+                        axios.post("{{ route('admin.mechanic.update') }}", {id: this.mechanicId, name: this.name, email: this.email, password: this.password})
+                        .then(res => {
 
-                            alert(res.data.msg)
-                            this.name = ""
-                            this.email  = ""
-                            this.password = ""
-                            this.fetch()
-                            
-                        }else{
+                            this.loading = false
+                            if(res.data.success == true){
 
-                            alert(res.data.msg)
+                                alert(res.data.msg)
+                                this.name = ""
+                                this.email  = ""
+                                this.password = ""
+                                this.fetch()
+                                
+                            }else{
 
-                        }
+                                alert(res.data.msg)
 
-                    })
-                    .catch(err => {
-                        $.each(err.response.data.errors, function(key, value){
-                            alert(value)
-                        });
-                    })
+                            }
+
+                        })
+                        .catch(err => {
+                            this.loading = false
+                            $.each(err.response.data.errors, function(key, value){
+                                alert(value)
+                            });
+                        })
+
+                    }
 
                 },
                 edit(mechanic){

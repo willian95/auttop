@@ -85,7 +85,7 @@ class OrderController extends Controller
 
             $this->storeHistory($order->id, $order->status_id);
 
-            $data = ["body" => "Orden ".$order->id." asignada", "link" => ""];
+            $data = ["body" => "Orden ".$order->id." asignada a ".$delivery->name, "link" => ""];
             $this->sendEmail($delivery->email, $data, "Orden asignada");
 
             foreach(AdminEmail::all() as $email){
@@ -121,8 +121,8 @@ class OrderController extends Controller
             }
 
             else{
-                $orders = Order::with('status', 'car', 'user', 'client', 'payments')->skip($skip)->take(15)->orderBy('id', 'desc')->get();
-                $ordersCount = Order::with('status', 'car', 'user', 'client', 'payments')->count();
+                $orders = Order::with('status', 'car', 'user', 'client', 'payments', 'mechanic')->skip($skip)->take(15)->orderBy('id', 'desc')->get();
+                $ordersCount = Order::with('status', 'car', 'user', 'client', 'payments', 'mechanic')->count();
             }
 
             return response()->json(["success" => true, "orders" => $orders, "ordersCount" => $ordersCount]);

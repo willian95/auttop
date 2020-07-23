@@ -25,6 +25,7 @@
                                     <th scope="col">Fecha de recepción</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Delivery</th>
+                                    <th scope="col">Mecánico</th>
                                     <th scope="col">Link</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
@@ -39,6 +40,9 @@
                                     <td v-cloak>@{{ order.created_at.substring(0, 10) }}</td>
                                     <td v-cloak>@{{ order.status.text }}</td>
                                     <td v-cloak>@{{ order.user.name }}</td>
+                                    <td v-cloak>
+                                        <span v-if="order.mechanic">@{{ order.mechanic.name }}</span>
+                                    </td>
                                     <td v-cloak>
                                         <a :href="'{{ url('/order/number') }}'+'/'+order.client_link" v-if="order.status_id >= 2">ver</a>
                                     </td>

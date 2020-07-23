@@ -78,7 +78,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Crear Orden de Trabajo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button id="modalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -269,7 +269,8 @@
                     orderServices:[],
                     deliveries:[],
                     delivery:"",
-                    orders:[]
+                    orders:[],
+                    loading:false
                 }
             },
             methods:{
@@ -418,37 +419,46 @@
                 },
                 store(){
 
-                    axios.post("{{ route('order.store') }}", {rut: this.rut, name: this.name, telephone: this.telephone, address: this.address, patent: this.patent, brand: this.brand, year: this.year, model: this.model, services: this.orderServices, delivery: this.delivery, commune: this.commune, color: this.color, email: this.email}).then(res => {
+                    if(this.loading == false){
 
-                        //console.log("test", res.data)
+                        this.loading = true
+                        axios.post("{{ route('order.store') }}", {rut: this.rut, name: this.name, telephone: this.telephone, address: this.address, patent: this.patent, brand: this.brand, year: this.year, model: this.model, services: this.orderServices, delivery: this.delivery, commune: this.commune, color: this.color, email: this.email}).then(res => {
+                            this.loading = false
+                            if(res.data.success == true){
 
-                        if(res.data.success == true){
+                                alert(res.data.msg)
+                                this.rut = ""
+                                this.name = ""
+                                this.telephone = ""
+                                this.address = ""
+                                this.patent = ""
+                                this.brand = ""
+                                this.year = ""
+                                this.commune=""
+                                this.model = ""
+                                this.orderServices = []
+                                this.delivery = ""
+                                this.email  =""
+                                $("#modalClose").click();
+                                $('body').removeClass('modal-open');
+                                $('body').css('padding-right', '0px');
+                                $('.modal-backdrop').remove();
+                                this.getOrders()
 
-                            alert(res.data.msg)
-                            this.rut = ""
-                            this.name = ""
-                            this.telephone = ""
-                            this.address = ""
-                            this.patent = ""
-                            this.brand = ""
-                            this.year = ""
-                            this.commune=""
-                            this.model = ""
-                            this.orderServices = []
-                            this.delivery = ""
-                            this.email  =""
-                            this.getOrders()
+                            }else{
+                                alert(res.data.msg)
+                            }
 
-                        }else{
-                            alert(res.data.msg)
-                        }
 
-                    })
-                    .catch(err => {
-                        $.each(err.response.data.errors, function(key, value){
-                            alert(value)
-                        });
-                    })
+                        })
+                        .catch(err => {
+                            this.loading = false
+                            $.each(err.response.data.errors, function(key, value){
+                                alert(value)
+                            });
+                        })
+
+                    }
 
                 }
 
