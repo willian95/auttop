@@ -74,7 +74,8 @@
             data(){
                 return{
                     orders:[],
-                    pages:0
+                    pages:0,
+                    loading:false
                 }
             },
             methods:{
@@ -97,22 +98,32 @@
 
                 },
                 notificationCarProcess(id){
-                    axios.post("{{ route('admin.order.notificationCarProcess') }}", {id: id})
-                    .then(res => {
+                    
+                    if(this.loading == false){
 
-                        if(res.data.success == true){
-                            alert(res.data.msg)
-                            this.fetch()
-                        }else{
-                            alert(res.data.msg)
-                        }
+                        this.loading = true
 
-                    })
-                    .catch(err => {
-                        $.each(err.response.data.errors, function(key, value){
-                            alert(value)
-                        });
-                    })
+                        axios.post("{{ route('admin.order.notificationCarProcess') }}", {id: id})
+                        .then(res => {
+                            this.loading = false
+                            if(res.data.success == true){
+
+                                alert(res.data.msg)
+                                this.fetch()
+                            }else{
+                                alert(res.data.msg)
+                            }
+
+                        })
+                        .catch(err => {
+                            this.loading = false
+                            $.each(err.response.data.errors, function(key, value){
+                                alert(value)
+                            });
+                        })
+
+                    }
+
                 }          
 
             },
