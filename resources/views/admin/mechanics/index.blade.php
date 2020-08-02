@@ -145,7 +145,7 @@
                         .catch(err => {
                             this.loading = false
                             $.each(err.response.data.errors, function(key, value){
-                                alertify.error(value)
+                                alertify.error(value[0])
                             });
                         })
 
@@ -179,7 +179,7 @@
                         .catch(err => {
                             this.loading = false
                             $.each(err.response.data.errors, function(key, value){
-                                alertify.error(value)
+                                alertify.error(value[0])
                             });
                         })
 
@@ -204,7 +204,7 @@
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alertify.error(value)
+                            alertify.error(value[0])
                         });
                     })
 
@@ -227,7 +227,7 @@
                         })
                         .catch(err => {
                             $.each(err.response.data.errors, function(key, value){
-                                alertify.error(value)
+                                alertify.error(value[0])
                             });
                         })
 
