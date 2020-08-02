@@ -27,7 +27,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(order, index) in orders" v-if="(order.status.id == 1 && order.client && order.car) || (order.status.id == 2 && order.client && order.car)">
+                            <tr v-for="(order, index) in orders" v-if="(order.status.id == 1 && order.client && order.car) || (order.status.id == 2 && order.client && order.car) || (order.status.id == 7 && order.client && order.car) || (order.status.id == 8 && order.client && order.car)">
                                 <th v-cloak>@{{ order.id }}</th>
                                 <td v-cloak>@{{ order.client.name }}</td>
                                 <td v-cloak>@{{ order.client.telephone }}</td>
@@ -39,6 +39,8 @@
                                 <td v-cloak>
                                     <a v-if="order.status.id == 1" class="btn btn-success text-white" :href="'{{ url('/') }}'+'/delivery/order/edit/'+order.id">Revisión de orden</a>
                                     <button v-if="order.status.id == 2" class="btn btn-success text-white" @click="notificationCarProcess(order.id)">Auto en proceso</button>
+                                    <a v-if="order.status.id == 7" class="btn btn-success text-white" @click="notificationCarOnDelivery(order.id)">Auto Camino a tu lugar</a>
+                                    <a v-if="order.status.id == 8" class="btn btn-success text-white" @click="notificationCarFinished(order.id)">Vehiculo entregado</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -91,7 +93,7 @@
                             this.pages = Math.ceil(res.data.ordersCount / 20)
 
                         }else{
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
                         }
 
                     })
@@ -108,23 +110,59 @@
                             this.loading = false
                             if(res.data.success == true){
 
-                                alert(res.data.msg)
+                                alertify.success(res.data.msg)
                                 this.fetch()
                             }else{
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
                             }
 
                         })
                         .catch(err => {
                             this.loading = false
                             $.each(err.response.data.errors, function(key, value){
-                                alert(value)
+                                alertify.error(value)
                             });
                         })
 
                     }
 
-                }          
+                },
+                notificationCarOnDelivery(id){
+                    axios.post("{{ url('/admin/order/notificationCarOnDelivery') }}", {id: id})
+                    .then(res => {
+
+                        if(res.data.success == true){
+                            alertify.success(res.data.msg)
+                            this.fetch()
+                        }else{
+                            alertify.error(res.data.msg)
+                        }
+
+                    })
+                    .catch(err => {
+                        $.each(err.response.data.errors, function(key, value){
+                            alertify.error(value)
+                        });
+                    })
+                },
+                notificationCarFinished(id){
+                    axios.post("{{ url('/admin/order/notificationFinish') }}", {id: id})
+                    .then(res => {
+
+                        if(res.data.success == true){
+                            alertify.success(res.data.msg)
+                            this.fetch()
+                        }else{
+                            alertify.error(res.data.msg)
+                        }
+
+                    })
+                    .catch(err => {
+                        $.each(err.response.data.errors, function(key, value){
+                            alertify.error(value)
+                        });
+                    })
+                } 
 
             },
             mounted(){

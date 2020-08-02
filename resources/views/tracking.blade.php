@@ -397,10 +397,10 @@
 						.then(res => {
 							this.loading = false
 							if(res.data.success == true){
-								alert(res.data.msg)
+								alertify.success(res.data.msg)
 								window.location.reload()
 							}else{
-								alert(res.data.msg)
+								alertify.error(res.data.msg)
 							}
 
 						})
@@ -423,7 +423,7 @@
 								window.location.href="{{ url('/checkout') }}"+"/"+res.data.cartId
 							
 							}else{
-								alert(res.data.msg)
+								alertify.error(res.data.msg)
 							}
 
 						})
@@ -447,7 +447,7 @@
 
 						}else{
 
-							alert(res.data.msg)
+							alertify.error(res.data.msg)
 
 						}
 

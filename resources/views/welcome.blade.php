@@ -20,7 +20,14 @@
         <div class="container text-banner-two">
 
             <div class="logos log">
-                <img alt="Auttop" class="img-navbar"  src="{{ asset('assets/img/logo-blanco.png') }}">
+
+                @if( strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "chrome") > -1 )
+                    <img alt="Auttop" class="img-navbar"  src="{{ asset('assets/img/logo-blanco.png') }}">
+                @elseif(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "chrome") > -1)
+                    <img alt="Auttop" style="width: 100px;"  src="{{ asset('assets/img/logo-blanco.png') }}">
+                @else
+                    <img alt="Auttop" class="img-navbar"  src="{{ asset('assets/img/logo-blanco.png') }}">
+                @endif
             </div>
             <h1 class="title-banner">Bienvenidos a Auttop</h1>
             <div class="btn-principal"> 

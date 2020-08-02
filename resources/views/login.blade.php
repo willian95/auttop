@@ -67,7 +67,7 @@
                     .then(res => {
                         
                         if(res.data.success == true){
-                            alert(res.data.msg)
+                            alertify.success(res.data.msg)
                             if(res.data.user.role_id == 1)
                                 window.location.href="{{ route('admin.dashboard.index') }}"
                             else if(res.data.user.role_id == 2)
@@ -75,14 +75,14 @@
                             else if(res.data.user.role_id == 3)
                                 window.location.href="{{ route('delivery.index') }}"
                         }else{
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
                             this.password = ""
                         }
 
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                         this.password = ""
                     })
@@ -91,7 +91,7 @@
 
             },
             mounted(){
-                
+            
 
             }
 

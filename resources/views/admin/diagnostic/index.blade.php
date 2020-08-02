@@ -140,17 +140,17 @@
 
                             this.loading = false
                             if(res.data.success == true){
-                                alert(res.data.msg)
+                                alertify.success(res.data.msg)
                                 window.location.href="{{ route('admin.order.index') }}"
                             }else{
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
                             }
 
                         })
                         .catch(err =>{
                             this.loading = false
                             $.each(err.response.data.errors, function(key, value){
-                                alert(value)
+                                alertify.error(value)
                             });
                         })
 
@@ -175,7 +175,7 @@
                     })
                     .catch(err =>{
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
                 }

@@ -141,12 +141,12 @@
                             this.approvedDiagnostics = res.data.diagnostic
                             this.total = res.data.total
                         }else{
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
                         }
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
 
@@ -161,7 +161,7 @@
                         if(this.paymentMethod == 'transferencia bancaria'){
                             this.loading = false
                             if(this.transferID == ""){
-                                alert('Debe colocar el ID de la transacción')
+                                alertify.error('Debe colocar el ID de la transacción')
                                 error = true
                             }
 
@@ -176,12 +176,12 @@
 
                                 if(res.data.success == true){
 
-                                    alert(res.data.msg)
+                                    alertify.success(res.data.msg)
                                     window.location.href="{{ url('/order/number/'.$order->client_link) }}"
 
                                 }else{
 
-                                    alert(res.data.msg)
+                                    alertify.error(res.data.msg)
 
                                 }
 
@@ -189,7 +189,7 @@
                             .catch(err => {
                                 this.loading = false
                                 $.each(err.response.data.errors, function(key, value){
-                                    alert(value)
+                                    alertify.error(value)
                                 });
                             })
 

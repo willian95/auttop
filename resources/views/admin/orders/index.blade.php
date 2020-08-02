@@ -58,7 +58,7 @@
                                         @if(\Auth::user()->role_id == 1)
                                         <a v-if="order.status.id == 4" class="btn btn-success text-white" :href="'{{ url('/admin/order/diagnostic/') }}'+'/'+order.id">Diagnostico</a>
                                         @endif
-                                        @if(\Auth::user()->role_id == 1 || \Auth::user()->role_id == 2)
+                                        @if(\Auth::user()->role_id == 3)
                                         <a v-if="order.status.id == 7" class="btn btn-success text-white" @click="notificationCarOnDelivery(order.id)">Auto Camino a tu lugar</a>
                                         <a v-if="order.status.id == 8" class="btn btn-success text-white" @click="notificationCarFinished(order.id)">Vehiculo entregado</a>
                                         @endif
@@ -116,7 +116,7 @@
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
 
@@ -126,16 +126,16 @@
                     .then(res => {
 
                         if(res.data.success == true){
-                            alert(res.data.msg)
+                            alertify.success(res.data.msg)
                             this.fetch()
                         }else{
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
                         }
 
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
                 },
@@ -144,16 +144,16 @@
                     .then(res => {
 
                         if(res.data.success == true){
-                            alert(res.data.msg)
+                            alertify.success(res.data.msg)
                             this.fetch()
                         }else{
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
                         }
 
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
                 },
@@ -162,16 +162,16 @@
                     .then(res => {
 
                         if(res.data.success == true){
-                            alert(res.data.msg)
+                            alertify.success(res.data.msg)
                             this.fetch()
                         }else{
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
                         }
 
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
                 },   
@@ -182,16 +182,16 @@
                         .then(res => {
 
                             if(res.data.success == true){
-                                alert(res.data.msg)
+                                alertify.success(res.data.msg)
                                 this.fetch()
                             }else{
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
                             }
 
                         })
                         .catch(err => {
                             $.each(err.response.data.errors, function(key, value){
-                                alert(value)
+                                alertify.error(value)
                             });
                         })
                     }
@@ -206,13 +206,13 @@
                             if(res.data.success == true){
                             this.orders = res.data.orders
                             }else{
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
                             }
 
                         })
                         .catch(err => {
                             $.each(err.response.data.errors, function(key, value){
-                                alert(value)
+                                alertify.error(value)
                             });
                         })
 

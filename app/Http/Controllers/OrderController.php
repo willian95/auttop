@@ -237,7 +237,7 @@ class OrderController extends Controller
             $order->update();
 
             $this->storeHistory($order->id, $order->status_id);
-            //$this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", tu auto va camino a tu lugar. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
+            $this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", tu auto va camino a tu lugar. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
 
             return response()->json(["success" => true, "msg" => "Orden actualizada"]);
 
@@ -258,7 +258,7 @@ class OrderController extends Controller
             $order->update();
 
             $this->storeHistory($order->id, $order->status_id);
-            //$this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", tu auto va camino a tu lugar. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
+            $this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", tu auto ha sido entregado. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
 
             return response()->json(["success" => true, "msg" => "Orden actualizada"]);
 
@@ -319,8 +319,8 @@ class OrderController extends Controller
 
             $skip = ($page - 1) * 20;
 
-            $orders = Order::where('user_id', \Auth::user()->id)->where('status_id', '<', 3)->with('client', 'car', 'diagnostic', 'status')->skip($skip)->take(20)->orderBy('id', 'desc')->get();
-            $ordersCount = Order::where('user_id', \Auth::user()->id)->where('status_id', '<', 3)->with('client', 'car', 'diagnostic', 'status')->count();
+            $orders = Order::where('user_id', \Auth::user()->id)->whereIn('status_id', ["1","2", "7", "8"])->with('client', 'car', 'diagnostic', 'status')->skip($skip)->take(20)->orderBy('id', 'desc')->get();
+            $ordersCount = Order::where('user_id', \Auth::user()->id)->whereIn('status_id', ["1","2", "7", "8"])->with('client', 'car', 'diagnostic', 'status')->count();
 
             return response()->json(["success" => true, "orders" => $orders, "ordersCount" => $ordersCount]);
 

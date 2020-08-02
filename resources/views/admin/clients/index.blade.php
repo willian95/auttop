@@ -82,7 +82,7 @@
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
 
@@ -94,26 +94,26 @@
                         if(res.data.success == true){
 
                             if(res.data.data != null){
-                                alert(res.data.msg)
+                                alertify.success(res.data.msg)
                                 this.name = res.data.data.name
                                 this.telephone = res.data.data.telephone
                                 this.address = res.data.data.address
                                 this.location = res.data.data.location
                                 this.email = res.data.data.email
                             }else{
-                                alert("Cliente no encontrado")
+                                alertify.error("Cliente no encontrado")
                             }
 
                         }else{
 
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
 
                         }
 
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
 
@@ -125,18 +125,18 @@
                         axios.post("{{ url('/admin/client/delete/') }}", {id: id}).then(res => {
 
                             if(res.data.success == true){
-                                alert(res.data.msg)
+                                alertify.success(res.data.msg)
                                 this.fetch()
                             }else{
 
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
 
                             }
 
                         })
                         .catch(err => {
                             $.each(err.response.data.errors, function(key, value){
-                                alert(value)
+                                alertify.error(value)
                             });
                         })
 

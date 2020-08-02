@@ -127,21 +127,21 @@
 
                         if(res.data.success == true){
 
-                            alert(res.data.msg)
+                            alertify.success(res.data.msg)
                             this.name = ""
                             this.email  = ""
                             this.password = ""
                             this.fetch()
                         }else{
 
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
 
                         }
 
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
 
@@ -153,7 +153,7 @@
 
                         if(res.data.success == true){
 
-                            alert(res.data.msg)
+                            alertify.success(res.data.msg)
                             this.name = ""
                             this.email  = ""
                             this.password = ""
@@ -161,14 +161,14 @@
                             
                         }else{
 
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
 
                         }
 
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
 
@@ -192,7 +192,7 @@
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
 
@@ -204,18 +204,18 @@
                         axios.post("{{ url('/admin/delivery/delete') }}", {id: id}).then(res => {
 
                             if(res.data.success == true){
-                                alert(res.data.msg)
+                                alertify.success(res.data.msg)
                                 this.fetch()
                             }else{
 
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
 
                             }
 
                         })
                         .catch(err => {
                             $.each(err.response.data.errors, function(key, value){
-                                alert(value)
+                                alertify.error(value)
                             });
                         })
 

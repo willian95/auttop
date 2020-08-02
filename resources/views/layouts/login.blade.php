@@ -13,6 +13,8 @@
     <link href="{{ asset('assets/css/font-awesome.css') }}">
     <link href="{{ asset('assets/css/style-login.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style-login.css') }}" rel="stylesheet">
+    <link href="{{ asset('alertify/css/alertify.css') }}" rel="stylesheet">
+    <link href="{{ asset('alertify/css/themes/bootstrap.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -21,7 +23,12 @@
         @yield('content')
     </div>
 
+    <script src="{{ asset('alertify/alertify.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script>
+        alertify.set('notifier','position', 'top-right');
+    </script>
 
     @stack('scripts')
 

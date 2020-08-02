@@ -98,10 +98,10 @@
                             this.loading = false
 
                             if(res.data.success == true){
-                                alert(res.data.msg)
+                                alertify.success(res.data.msg)
                                 window.location.href="{{ route('mechanic.index') }}"
                             }else{
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
                             }
 
                         })

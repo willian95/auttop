@@ -16,6 +16,8 @@
 
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/media.css') }}">
+        <link href="{{ asset('alertify/css/alertify.css') }}" rel="stylesheet">
+        <link href="{{ asset('alertify/css/themes/bootstrap.css') }}" rel="stylesheet">
 
         @stack('css')
   
@@ -29,10 +31,14 @@
 
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/slick.min.js') }}"></script>
-     
+        <script src="{{ asset('alertify/alertify.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
+
+        <script>
+            alertify.set('notifier','position', 'top-right');
+        </script>
 
         @stack('scripts')
 

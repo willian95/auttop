@@ -159,7 +159,7 @@
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
 
@@ -170,18 +170,18 @@
                     .then(res => {
 
                         if(res.data.success == true){
-                            alert(res.data.msg)
+                            alertify.success(res.data.msg)
 
                             window.location.href="{{ url('/order/payment/'.$order->client_link) }}"
 
                         }else{
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
                         }
 
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value){
-                            alert(value)
+                            alertify.error(value)
                         });
                     })
 
