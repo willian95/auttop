@@ -124,7 +124,7 @@ class DiagnosticController extends Controller
             $order->update();
 
             $this->storeHistory($order->id, $order->status_id);
-            $this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", puedes proceder ala revisión del presupuesto y pago. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
+            $this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", puedes proceder a la revisión del presupuesto y pago. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
 
             return response()->json(["success" => true, "msg" => "Diagnostico actualizado"]);
 
