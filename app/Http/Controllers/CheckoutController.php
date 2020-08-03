@@ -99,7 +99,7 @@ class CheckoutController extends Controller
 			$order->update();
 
 			$this->storeHistory($order->id, $order->status_id);
-			$this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", tu ha pasado al proceso de lavado. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
+			$this->storeMessage($order->client->telephone, "Hola ".$order->client->name.", tu auto ha pasado al proceso de lavado. \n\n Puedes revisar el status en el siguiente link: ".url('order/number/'.$order->client_link));
 
 			$data = ["body" => "Su orden ha sido pagada exitosamente, su auto ha ingresado al proceso de lavado", "link" => $order->link];
 			$this->sendEmail($order->client->email, $data, "Orden pagada exitosamente");
