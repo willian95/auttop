@@ -13,6 +13,7 @@ use Freshwork\Transbank\WebpayPatPass;
 use Freshwork\Transbank\RedirectorHelper;
 
 use App\Traits\StoreOrderHistory;
+use App\Traits\StoreWhatsappMessage;
 
 use App\Traits\SendEmail;
 use App\AdminEmail;
@@ -20,6 +21,7 @@ use App\AdminEmail;
 class CheckoutController extends Controller
 {
 	use StoreOrderHistory;
+	use StoreWhatsappMessage;
 	use SendEmail;
 
     function cart(Request $request){
